@@ -1,8 +1,8 @@
 //
 //  TweetCell.swift
-//  CF iOS DevEx Day 1
+//  Tweetacular
 //
-//  Created by Eric Mentele on 1/5/15.
+//  Created by Eric Mentele on 1/7/15.
 //  Copyright (c) 2015 Eric Mentele. All rights reserved.
 //
 

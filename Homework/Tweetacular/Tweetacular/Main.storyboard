@@ -46,9 +46,9 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="nameLabel" destination="AA3-ly-2gE" id="tYb-Vy-sVZ"/>
-                                            <outlet property="tweetImage" destination="drG-1k-Hon" id="pev-h3-2eJ"/>
-                                            <outlet property="tweetText" destination="Jpl-M0-167" id="1Nr-hx-yCn"/>
+                                            <outlet property="nameLabel" destination="AA3-ly-2gE" id="OuM-dw-xTz"/>
+                                            <outlet property="tweetImage" destination="drG-1k-Hon" id="Nm5-Ew-Z1q"/>
+                                            <outlet property="tweetText" destination="Jpl-M0-167" id="C0o-z3-LGh"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

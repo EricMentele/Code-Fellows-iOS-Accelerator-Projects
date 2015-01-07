@@ -1,8 +1,8 @@
 //
 //  Tweet.swift
-//  CF iOS DevEx Day 1
+//  Tweetacular
 //
-//  Created by Eric Mentele on 1/5/15.
+//  Created by Eric Mentele on 1/7/15.
 //  Copyright (c) 2015 Eric Mentele. All rights reserved.
 //
 
@@ -16,7 +16,7 @@ class Tweet {
   
   var userName: String
   
-  var userImage: UIImage?//exp
+  var userImage: UIImage?
   
   init(_ jsonDictionary: [String : AnyObject]) {
     
@@ -26,9 +26,9 @@ class Tweet {
     
     let imageUrlString = nameDictionary["profile_image_url"] as String
     
-    let imageURL = NSURL(string: imageUrlString)//exp
+    let imageURL = NSURL(string: imageUrlString)
     
-    let userImageData = NSData(contentsOfURL: imageURL!)//exp
+    let userImageData = NSData(contentsOfURL: imageURL!)
     
     self.userName = nameDictionary ["name"] as String
     
