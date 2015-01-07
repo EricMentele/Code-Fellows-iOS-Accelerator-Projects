@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>F19869D8-2D45-486E-96EB-DEBF99D0FEE1</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Tweetacular</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>80E830723CD6FF00288E5D74CCD3FE69A1D1EF2B</key>
+		<string>https://github.com/EricMentele/Code-Fellows-iOS-Accelerator-Projects.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Homework/Tweetacular/Tweetacular.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>80E830723CD6FF00288E5D74CCD3FE69A1D1EF2B</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/EricMentele/Code-Fellows-iOS-Accelerator-Projects.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>80E830723CD6FF00288E5D74CCD3FE69A1D1EF2B</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>80E830723CD6FF00288E5D74CCD3FE69A1D1EF2B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Code%20Fellows%20iOS%20Dev%20Accelerator</string>
+		</dict>
+	</array>
+</dict>
+</plist>
