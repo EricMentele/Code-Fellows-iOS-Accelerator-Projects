@@ -145,8 +145,55 @@ class NetworkController {
     }//imageURL
 
   }//fetchUserTweetImage
+  
+  func fetchUserTweetTL (userid: String, completionHandler: ([Tweet]?, String?) -> ()) {
+    
+    let userRequestURL = NSURL(string: "https://api.twitter.com/1.1/statuses/user_timeline.json?user_id=\(userid)")
+    
+    let twitterRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: userRequestURL, parameters: nil)
+    
+    twitterRequest.account = self.myTwitterAccount
+    
+    twitterRequest.performRequestWithHandler(){ (data, response, error) -> Void in
+      
+      if error == nil {
+        switch response.statusCode {
+          
+        case 200...299: println("Go for launch again!")
+        
+        if let jsonArray = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [AnyObject] {
+          
+          var tweets = [Tweet]()
+          
+          for object in jsonArray {
+            
+            if let jsonDictionary = object as? [String : AnyObject] {
+              
+              let tweet = Tweet(jsonDictionary)
+              
+              tweets.append(tweet)
+              
+            }//jsonDicionary
+          }//jsonArray
+          
+          NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+            
+            completionHandler(tweets,nil)
+          })//NSOperationQueue
+          //jsonDictionary
+          //for object
+          }//jsonArray
+          //return codes designating a problem.
+        case 300...599:
+          println("We got a problem!: ")
+          completionHandler(nil, "We got a problem")
+        default: println("response defaulted")
+        }//switch
+      }//if error nil
+    }//Twitter Request
+  }//fetchUserTweetTL
 }//Network Controller
-  
-  //function to get data from tweet id
-  
+
+
+
 

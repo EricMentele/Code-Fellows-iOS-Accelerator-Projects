@@ -26,22 +26,32 @@ class TweetViewController: UIViewController {
         
       self.selectedTweet.getTweetInfo(infoDictionary!)
 //      self.selectedTweet.tweetFavoriteCount = infoDictionary!(
-      }
+      }//if errorString nil
       println(self.selectedTweet.tweetFavoriteCount)
-    })
-
-      
+      self.favoritedLabel.text = self.selectedTweet.tweetFavoriteCount
+    })//fetchTweetInfoCompletionHandler
+    
       self.tweetLabel.text = self.selectedTweet!.userName
       self.tweetTextLabel.text = selectedTweet.text
       
       self.userImageButton.setBackgroundImage(selectedTweet.userImage, forState: UIControlState.Normal)
         // Do any additional setup after loading the view.
-    }
+  
+    }//viewdidload
+  
+  @IBAction func twitterUser(sender: AnyObject) {
+    let tweetUserVC = self.storyboard?.instantiateViewControllerWithIdentifier("TweetUser") as TweetUserViewController
+    
+   
+    self.navigationController?.pushViewController(tweetUserVC, animated: true)
+    
+  }//twitterUserButton
+  
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
+    }//override func
     
 
     /*

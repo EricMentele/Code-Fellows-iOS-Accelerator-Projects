@@ -63,11 +63,6 @@
                                                 <constraint firstItem="drG-1k-Hon" firstAttribute="top" secondItem="aZr-1B-6EV" secondAttribute="topMargin" constant="1" id="ueC-F1-cCX"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="nameLabel" destination="AA3-ly-2gE" id="OuM-dw-xTz"/>
-                                            <outlet property="tweetImage" destination="drG-1k-Hon" id="Nm5-Ew-Z1q"/>
-                                            <outlet property="tweetText" destination="j4T-bg-Yi9" id="VsK-Ap-bUF"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -82,7 +77,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="9t0-lG-GDn"/>
                     <connections>
-                        <outlet property="tableView" destination="HKx-Q0-okU" id="gKr-lo-90x"/>
+                        <outlet property="tableView" destination="HKx-Q0-okU" id="K8t-R9-QCo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -116,9 +111,9 @@
                                     <constraint firstAttribute="height" constant="76" id="YiF-EI-Ba5"/>
                                     <constraint firstAttribute="width" constant="75" id="aU5-GF-5he"/>
                                 </constraints>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                                <connections>
+                                    <action selector="twitterUser:" destination="NiQ-vg-f8o" eventType="touchUpInside" id="Z2o-DW-ygo"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favorited" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tdf-cr-cqa">
                                 <rect key="frame" x="16" y="149" width="75" height="21"/>
@@ -161,6 +156,54 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8dY-oi-jcv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1676" y="296"/>
+        </scene>
+        <!--Tweet User View Controller-->
+        <scene sceneID="M2s-4M-ePH">
+            <objects>
+                <viewController storyboardIdentifier="TweetUser" id="0g4-U7-w4E" customClass="TweetUserViewController" customModule="Tweetacular" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6p4-jX-THX"/>
+                        <viewControllerLayoutGuide type="bottom" id="tGX-B8-HcY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nyw-UI-9iD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="3R5-2e-HmQ">
+                                <rect key="frame" x="16" y="0.0" width="568" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="gOT-rE-GHD">
+                                    <rect key="frame" x="0.0" y="64" width="568" height="130"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </view>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="eXg-TF-hav">
+                                        <rect key="frame" x="0.0" y="0.0" width="568" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eXg-TF-hav" id="Jd5-uP-qQm">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="3R5-2e-HmQ" secondAttribute="trailing" id="8fA-B8-nZl"/>
+                            <constraint firstItem="3R5-2e-HmQ" firstAttribute="leading" secondItem="nyw-UI-9iD" secondAttribute="leadingMargin" id="PHB-TA-xiG"/>
+                            <constraint firstItem="tGX-B8-HcY" firstAttribute="top" secondItem="3R5-2e-HmQ" secondAttribute="bottom" id="QJX-bz-2qg"/>
+                            <constraint firstItem="3R5-2e-HmQ" firstAttribute="top" secondItem="nyw-UI-9iD" secondAttribute="topMargin" id="ohH-gD-mB5"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="tUTableView" destination="3R5-2e-HmQ" id="umy-Mc-0ou"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f3v-W6-buz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2376" y="296"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yDc-m3-LJT">

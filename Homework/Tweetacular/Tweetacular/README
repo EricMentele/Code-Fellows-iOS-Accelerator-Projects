@@ -1,41 +1,52 @@
-Monday
+MondayX
 
-Create your MVC groups X
-Create your Tweet class with an initializer that takes a Dictionary in as a parameter X
-In addition to the text property, add a property to hold the username of the person who tweeted the tweet X
-Drag the tweet.json file into your Xcode project X
-Parse the json file into tweet objects X
-In addition to text, pull out the username from the json for each tweet and use that property you added to hold it X
-Display those tweet objects in the table view X
-Create a custom table view cell class with your own custom label and image view X
-
-
+Create your MVC groups
+Create your Tweet class with an initializer that takes a Dictionary in as a parameter
+In addition to the text property, add a property to hold the username of the person who tweeted the tweet
+Drag the tweet.json file into your Xcode project
+Parse the json file into tweet objects
+In addition to text, pull out the username from the json for each tweet and use that property you added to hold it
+Display those tweet objects in the table view
+Create a custom table view cell class with your own custom label and image view
 Tuesday
 
-Use the Accounts framework to access the user's twitter account on their iOS device X
-Use the Social framework to make a request to twitter for the users home timeline X
-Use a ranged switch statement to make sure the status code of the response is good X
-Reload the table view on the main thread once you are done parsing the JSON data from the response X
+Use the Accounts framework to access the user's twitter account on their iOS device
+Use the Social framework to make a request to twitter for the users home timeline
+Use a ranged switch statement to make sure the status code of the response is good
+Reload the table view on the main thread once you are done parsing the JSON data from the response
 
+WednesdayX
 
-Wednesday
-
-Setup your cells with autolayout so you can see the entire tweets text. If you get any .... at
-the end that is probably twitters API being stupid. X
-Move all of your network code into a network controller, and create a method to fetch the users timeline with a completion handler.X
+Setup your cells with autolayout so you can see the entire tweets text. If you get any .... at the end that is probably twitters API being stupid
+Move all of your network code into a network controller, and create a method to fetch the users timeline with a completion handler
 Create a 2nd view controller that fetches more specific information on the tweet that the user presses on.
-The API URL for that is "https://api.twitter.com/1.1/statuses/show.json?id=\(id)" where id is the id of the tweet that was pressed on.
-You should create a 2nd method in your network controller that fetches more info for the tweet
-that was selected, using this URL in the SLRequest.
-Upon clicking a tweet, your interface should pop to the 2nd view controller and display the tweet
-selected and additional info that was retrieved by the 2nd network call.
+The API URL for that is "https://api.twitter.com/1.1/statuses/show.json?id=\(id)" where id is the id of the tweet that was pressed on. You should create a 2nd method in your network controller that fetches more info for the tweet that was selected, using this URL in the SLRequest.
+Upon clicking a tweet, your interface should pop to the 2nd view controller and display the tweet selected and additional info that was retrieved by the 2nd network call.
 
 Thursday
 
 Get caught up with Mon-Wed homework
-In your single tweet view controller, upon clicking on the person's image (hint: change the image view to a button, buttons can have images) the app should push a 3rd view controller onto the stack
+In your single tweet view controller, upon clicking on the person's image (hint: change the image view to a button, buttons can have images) the app should push a 3rd view controller onto the stackX
 This 3rd view controller will show that user's timeline (the api url is "https://api.twitter.com/1.1/statuses/user_timeline.json?username (Links to an external site.)=\(username)"
 Use a table view header view to mimic Twitter's layout of that screen (show their profile background image, their picture, their name, their location)
 Convert your table view cells to use a Nib, so you can share the same cell for both the home time line VC and the user Timeline VC
 Have your cells be a dynamic height based on how much text each tweet is
 Implement a stack data structure in a separate playground
+
+Friday:
+
+Pair programming rules:
+
+You must be working in a pair of 2 at all times. The best pairs have similar experience levels.
+One person will be typing (driving), but the other person needs to actively contribute. Each line of code you guys write should be discussed and decided upon. Keep an open mind, and if you guys disagree on something, try one way first and see if it works, if it doesn't try the other way.
+Don't physically harm your partner.
+Switch roles every half hour.
+Remember to high-five when you guys do something awesome. See http://en.wikipedia.org/wiki/High_five (Links to an external site.) for more info on this ritual.
+The friendship friday challenges can be submitted jointly, if the work you did is on a different person's project, please note that in your homework submission. If the feature(s) you guys built is so awesome you just have to have it in your own project, copy it over.
+Challenges
+
+DO THIS ONE FIRST: In user timeline view controller (the 3rd VC), when a user's tweet is actually a reply or retweet, show the picture of the original author. When clicked on, it should take them to the single tweet view controller. This will achieve an endless drill down interface, just like twitter.
+Harness the power of the since_id parameter on your api calls. The since_id gives you tweets that are more recent than the id you pass in as the since_id. Combine this, with pull to refresh, to let the user refresh their timelines with the latest tweets.
+Use the max_id parameter. This is similar to since_id, except it gives you tweets older than the id provided as the max_id. So as the user scrolls towards the bottom of the table view, use the max_id to pull down more tweets. You can basically achieve infinite scrolling with this.
+Implement a tab bar controller, just like the actual twitter app. Implement at least one of the tabs, you can pick which one you want to implement.
+Implement an image cache. This cache should make it so you never download the same user image more than once while the app running. This cache can be completely in memory with no persistence. But persistence would be an extra challenge as well.

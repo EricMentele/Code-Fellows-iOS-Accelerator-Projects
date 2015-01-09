@@ -24,6 +24,8 @@ class Tweet {
   
   var tweetFavoriteCount: String?
   
+  var tweetUserID : String
+  
   init(_ jsonDictionary: [String : AnyObject]) {
     
     self.text = jsonDictionary["text"] as String
@@ -43,6 +45,8 @@ class Tweet {
     self.tweetId = jsonDictionary ["id_str"] as String
     
     self.userImageURL = nameDictionary["profile_image_url"] as String
+    
+    self.tweetUserID = nameDictionary["id_str"] as String
     
   }//init
   
