@@ -7,81 +7,41 @@
 //
 
 import UIKit
-import Accounts
-import Social
 
-class ViewController: UIViewController, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
   
   //tableView Outlet
   @IBOutlet weak var tableView: UITableView!
-  
-  
+  let networkController = NetworkController()
   var tweets = [Tweet]()
   
   override func viewDidLoad() {
+    
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
     self.tableView.dataSource = self
+    self.tableView.delegate = self
+    //Use network controller to populate view controller tweets
+    self.networkController.fetchHomeTimeline { (tweets, errorString) -> () in
+     
+      if errorString == nil {
+        
+        self.tweets = tweets!
+        self.tableView.reloadData()
+        
+      } else {
+        
+        //stores UIAlert controller to be used in case of failure to return tweet data
+        let networkIssueAlert = UIAlertController(title: "Error", message: "Unable to load data. Connectivity error!", preferredStyle: .Alert)
+        //adds a cancell button to dismiss alert
+        let cancelButton = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        networkIssueAlert.addAction(cancelButton)
+        //presents alert controller
+        self.presentViewController(networkIssueAlert, animated: true, completion: nil)
+      }
     
-    
-    //set up ACAccountStore object
-    let accountStore = ACAccountStore()
-    
-    //configure account for Twitter
-    let twitterAccountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
-
-    //open gate to account with .requestAccessToAccountsWithType
-    accountStore.requestAccessToAccountsWithType(twitterAccountType, options: nil) {( granted: Bool, error: NSError!) -> Void in
-    //check for access granted status and set up code to be run if granted
-      if granted {
-    //store twitter accounts from ACAccounts.
-        let twitterAccounts = accountStore.accountsWithAccountType(twitterAccountType)
-    //check to make sure accounts exist(!empty).
-        if  !twitterAccounts.isEmpty{
-    //store one(first) account.
-          let myTwitterAccount = twitterAccounts.first as ACAccount
-    //store URL to twitter api.
-          let twitterURL = NSURL(string: "https://api.twitter.com/1.1/statuses/home_timeline.json")
-    //set up request to twitter url.
-          let twitterRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: twitterURL, parameters: nil)
-    //designate account to send in request.
-          twitterRequest.account = myTwitterAccount
-    //perform asynchronous request with handler
-          twitterRequest.performRequestWithHandler(){ (data, response, error) -> Void in
-    //use switch for returned status codes
-            switch response.statusCode {
-            case 200...299: println("Go for launch!")
-            
-    //store json data returned from Twitter in array with NSJSONSerialization
-            if let jsonArray = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [AnyObject] {
-    //loop through array indeces to create an object for each
-              for object in jsonArray {
-    //cast object as dictionary
-                if let jsonDictionary = object as? [String : AnyObject] {
-    //store jsonDictionary values in a tweet object
-                  let tweet = Tweet(jsonDictionary)
-    //store tweet objects in tweets array
-                  self.tweets.append(tweet)
-                  println("Tweets:\(self.tweets)")
-    //switch back to main thread
-                  NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-    //load data into table view
-                    self.tableView.reloadData()
-                  })//NSoperationQueue
-                }//jsonDictionary
-              }//for object
-            }//jsonArray
-            case 300...599: println("We got a problem!")
-            default: println("response defaulted")
-            }//switch
-          }//Twitter request with handler
-        }//if twitter .isEmpty
-      }//if granted
-    }//accountStoreRequestWithType
-    
-    
-    
-  }
+  }//fetchHomeTImeline
+  }//viewDidLoad
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
@@ -99,10 +59,31 @@ class ViewController: UIViewController, UITableViewDataSource {
     
     cell.nameLabel.text = tweet.userName
     
-    cell.tweetImage.image = tweet.userImage
-    
+    if tweet.userImage == nil {
+      
+      self.networkController.fetchUserTweetImage(tweet, completionHandler: { (image) -> () in
+        
+        self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+      })//fetchUserTweetImage
+    }//iftweetimage
+    else {
+      cell.tweetImage.image = tweet.userImage
+    }//else
     return cell
     
+  }
+  //recognize that cell has been selected
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    //instantiate the view controller you want to go to
+    let tweetVC = self.storyboard?.instantiateViewControllerWithIdentifier("tweetVC") as TweetViewController
+    
+    var tweetToPass = self.tweets[indexPath.row]
+    
+    tweetVC.selectedTweet = tweetToPass
+    tweetVC.networkController = self.networkController
+    println(tweetToPass.tweetFavoriteCount)
+    //push the veiw controller you want to go to onto the nav stack to go to it.
+    self.navigationController?.pushViewController(tweetVC, animated: true)
   }
   
   override func didReceiveMemoryWarning() {

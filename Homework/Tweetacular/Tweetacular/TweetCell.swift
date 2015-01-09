@@ -14,7 +14,7 @@ class TweetCell: UITableViewCell {
   
   @IBOutlet weak var nameLabel: UILabel!
   
-  @IBOutlet weak var tweetText: UITextView!
+  @IBOutlet weak var tweetText: UILabel!
   
   
   override func awakeFromNib() {
@@ -28,6 +28,14 @@ class TweetCell: UITableViewCell {
     super.setSelected(selected, animated: animated)
     
   }
+  
+  //fix for automatic height issue
+//  override func layoutSubviews() {
+//    super.layoutSubviews()
+//    self.contentView.layoutIfNeeded()
+//    self.tweetLabel.preferredMaxLayoutWidth = self.tweetLabel.frame.width
+//  }
+
   
   
   

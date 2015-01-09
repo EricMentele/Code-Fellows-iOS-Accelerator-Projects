@@ -7,15 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		40C0E4AB1A5F59A00077C21B /* Tweet_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40C0E4AA1A5F59A00077C21B /* Tweet_Cell.xib */; };
+		40C0E4AF1A5F5D7A0077C21B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40C0E4AE1A5F5D7A0077C21B /* Main.storyboard */; };
 		40FEC1821A5C7FBD003E042B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FEC1811A5C7FBD003E042B /* AppDelegate.swift */; };
 		40FEC1841A5C7FBD003E042B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FEC1831A5C7FBD003E042B /* ViewController.swift */; };
 		40FEC1891A5C7FBD003E042B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40FEC1881A5C7FBD003E042B /* Images.xcassets */; };
 		40FEC18C1A5C7FBD003E042B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40FEC18A1A5C7FBD003E042B /* LaunchScreen.xib */; };
 		40FEC1981A5C7FBD003E042B /* TweetacularTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FEC1971A5C7FBD003E042B /* TweetacularTests.swift */; };
-		40FEC1A91A5C8812003E042B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40FEC1A81A5C8812003E042B /* Main.storyboard */; };
-		40FEC1AB1A5C8E47003E042B /* Instructions in Resources */ = {isa = PBXBuildFile; fileRef = 40FEC1AA1A5C8E47003E042B /* Instructions */; };
 		40FEC1AF1A5DA6A5003E042B /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FEC1AE1A5DA6A5003E042B /* TweetCell.swift */; };
 		40FEC1B11A5DA7FA003E042B /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FEC1B01A5DA7FA003E042B /* Tweet.swift */; };
+		40FEC1B31A5DD753003E042B /* README in Sources */ = {isa = PBXBuildFile; fileRef = 40FEC1B21A5DD753003E042B /* README */; };
+		40FEC1B51A5DD9AA003E042B /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FEC1B41A5DD9AA003E042B /* NetworkController.swift */; };
+		40FEC1B71A5DFCDD003E042B /* readme in Resources */ = {isa = PBXBuildFile; fileRef = 40FEC1B61A5DFCDD003E042B /* readme */; };
+		40FEC1B91A5DFD41003E042B /* TweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FEC1B81A5DFD41003E042B /* TweetViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		40C0E4AA1A5F59A00077C21B /* Tweet_Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Tweet_Cell.xib; sourceTree = "<group>"; };
+		40C0E4AE1A5F5D7A0077C21B /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		40FEC17C1A5C7FBD003E042B /* Tweetacular.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tweetacular.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40FEC1801A5C7FBD003E042B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40FEC1811A5C7FBD003E042B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -38,10 +44,12 @@
 		40FEC1911A5C7FBD003E042B /* TweetacularTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TweetacularTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		40FEC1961A5C7FBD003E042B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40FEC1971A5C7FBD003E042B /* TweetacularTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetacularTests.swift; sourceTree = "<group>"; };
-		40FEC1A81A5C8812003E042B /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		40FEC1AA1A5C8E47003E042B /* Instructions */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Instructions; sourceTree = "<group>"; };
 		40FEC1AE1A5DA6A5003E042B /* TweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
 		40FEC1B01A5DA7FA003E042B /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
+		40FEC1B21A5DD753003E042B /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README; path = Tweetacular/README; sourceTree = "<group>"; };
+		40FEC1B41A5DD9AA003E042B /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
+		40FEC1B61A5DFCDD003E042B /* readme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme; sourceTree = "<group>"; };
+		40FEC1B81A5DFD41003E042B /* TweetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +76,7 @@
 				40FEC17E1A5C7FBD003E042B /* Tweetacular */,
 				40FEC1941A5C7FBD003E042B /* TweetacularTests */,
 				40FEC17D1A5C7FBD003E042B /* Products */,
+				40FEC1B21A5DD753003E042B /* README */,
 			);
 			sourceTree = "<group>";
 		};
@@ -87,6 +96,7 @@
 				40FEC1A21A5C86A1003E042B /* Model Layer */,
 				40FEC1A11A5C8696003E042B /* View Layer */,
 				40FEC17F1A5C7FBD003E042B /* Supporting Files */,
+				40FEC1B61A5DFCDD003E042B /* readme */,
 			);
 			path = Tweetacular;
 			sourceTree = "<group>";
@@ -95,7 +105,6 @@
 			isa = PBXGroup;
 			children = (
 				40FEC1801A5C7FBD003E042B /* Info.plist */,
-				40FEC1AA1A5C8E47003E042B /* Instructions */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -120,10 +129,11 @@
 		40FEC1A11A5C8696003E042B /* View Layer */ = {
 			isa = PBXGroup;
 			children = (
+				40C0E4AE1A5F5D7A0077C21B /* Main.storyboard */,
 				40FEC1AE1A5DA6A5003E042B /* TweetCell.swift */,
 				40FEC18A1A5C7FBD003E042B /* LaunchScreen.xib */,
 				40FEC1881A5C7FBD003E042B /* Images.xcassets */,
-				40FEC1A81A5C8812003E042B /* Main.storyboard */,
+				40C0E4AA1A5F59A00077C21B /* Tweet_Cell.xib */,
 			);
 			name = "View Layer";
 			sourceTree = "<group>";
@@ -141,6 +151,8 @@
 			children = (
 				40FEC1831A5C7FBD003E042B /* ViewController.swift */,
 				40FEC1811A5C7FBD003E042B /* AppDelegate.swift */,
+				40FEC1B41A5DD9AA003E042B /* NetworkController.swift */,
+				40FEC1B81A5DFD41003E042B /* TweetViewController.swift */,
 			);
 			name = "Controller Layer";
 			sourceTree = "<group>";
@@ -225,10 +237,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40FEC1B71A5DFCDD003E042B /* readme in Resources */,
+				40C0E4AF1A5F5D7A0077C21B /* Main.storyboard in Resources */,
+				40C0E4AB1A5F59A00077C21B /* Tweet_Cell.xib in Resources */,
 				40FEC18C1A5C7FBD003E042B /* LaunchScreen.xib in Resources */,
-				40FEC1AB1A5C8E47003E042B /* Instructions in Resources */,
 				40FEC1891A5C7FBD003E042B /* Images.xcassets in Resources */,
-				40FEC1A91A5C8812003E042B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +261,9 @@
 			files = (
 				40FEC1841A5C7FBD003E042B /* ViewController.swift in Sources */,
 				40FEC1821A5C7FBD003E042B /* AppDelegate.swift in Sources */,
+				40FEC1B51A5DD9AA003E042B /* NetworkController.swift in Sources */,
+				40FEC1B31A5DD753003E042B /* README in Sources */,
+				40FEC1B91A5DFD41003E042B /* TweetViewController.swift in Sources */,
 				40FEC1AF1A5DA6A5003E042B /* TweetCell.swift in Sources */,
 				40FEC1B11A5DA7FA003E042B /* Tweet.swift in Sources */,
 			);
@@ -433,6 +449,7 @@
 				40FEC19D1A5C7FBD003E042B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		40FEC19E1A5C7FBD003E042B /* Build configuration list for PBXNativeTarget "TweetacularTests" */ = {
 			isa = XCConfigurationList;
@@ -441,6 +458,7 @@
 				40FEC1A01A5C7FBD003E042B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
