@@ -150,7 +150,7 @@ class NetworkController {
     
     let userRequestURL = NSURL(string: "https://api.twitter.com/1.1/statuses/user_timeline.json?user_id=\(userid)")
     
-    let twitterRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: userRequestURL, parameters: nil)
+    let twitterRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: userRequestURL!, parameters: nil)
     
     twitterRequest.account = self.myTwitterAccount
     
@@ -185,7 +185,7 @@ class NetworkController {
           }//jsonArray
           //return codes designating a problem.
         case 300...599:
-          println("We got a problem!: ")
+          println("We got a problem!!!!!!!: ")
           completionHandler(nil, "We got a problem")
         default: println("response defaulted")
         }//switch

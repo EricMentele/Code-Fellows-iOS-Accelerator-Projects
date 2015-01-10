@@ -27,10 +27,10 @@ Thursday
 
 Get caught up with Mon-Wed homework
 In your single tweet view controller, upon clicking on the person's image (hint: change the image view to a button, buttons can have images) the app should push a 3rd view controller onto the stackX
-This 3rd view controller will show that user's timeline (the api url is "https://api.twitter.com/1.1/statuses/user_timeline.json?username (Links to an external site.)=\(username)"
+This 3rd view controller will show that user's timeline (the api url is "https://api.twitter.com/1.1/statuses/user_timeline.json?username (Links to an external site.)=\(username)"X
 Use a table view header view to mimic Twitter's layout of that screen (show their profile background image, their picture, their name, their location)
-Convert your table view cells to use a Nib, so you can share the same cell for both the home time line VC and the user Timeline VC
-Have your cells be a dynamic height based on how much text each tweet is
+Convert your table view cells to use a Nib, so you can share the same cell for both the home time line VC and the user Timeline VCX
+Have your cells be a dynamic height based on how much text each tweet isX
 Implement a stack data structure in a separate playground
 
 Friday:

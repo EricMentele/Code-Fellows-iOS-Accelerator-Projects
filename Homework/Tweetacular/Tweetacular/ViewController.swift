@@ -19,6 +19,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
+    self.tableView.registerNib(UINib(nibName: "Tweet_Cell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "tweetCell")
+    self.tableView.estimatedRowHeight = 144
+    self.tableView.rowHeight = UITableViewAutomaticDimension
     self.tableView.dataSource = self
     self.tableView.delegate = self
     //Use network controller to populate view controller tweets

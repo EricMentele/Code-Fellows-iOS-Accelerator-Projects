@@ -26,27 +26,37 @@ class Tweet {
   
   var tweetUserID : String
   
+  var tweetUserLocation : String
+  
+  var userBannerImage: UIImage?
+  
+  
   init(_ jsonDictionary: [String : AnyObject]) {
     
     self.text = jsonDictionary["text"] as String
     
     var nameDictionary = jsonDictionary["user"] as [String : AnyObject]
     
-    //let imageUrlString = nameDictionary["profile_image_url"] as String
+    let imageUrlString = nameDictionary["profile_banner_url"] as String
     
-    //let imageURL = NSURL(string: imageUrlString)
+    let bannerImageURL = NSURL(string: imageUrlString)
     
-    //let userImageData = NSData(contentsOfURL: imageURL!)
+    let userBannerImageData = NSData(contentsOfURL: bannerImageURL!)
+    
     
     self.userName = nameDictionary ["name"] as String
     
-    //self.userImage = UIImage(data: userImageData!)
+    self.userBannerImage = UIImage(data: userBannerImageData!)
     
     self.tweetId = jsonDictionary ["id_str"] as String
     
     self.userImageURL = nameDictionary["profile_image_url"] as String
     
     self.tweetUserID = nameDictionary["id_str"] as String
+    
+    self.tweetUserLocation = nameDictionary["location"] as String
+    
+    
     
   }//init
   

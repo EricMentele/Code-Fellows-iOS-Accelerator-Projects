@@ -11,9 +11,16 @@ import UIKit
 class TweetUserViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
   @IBOutlet weak var tUTableView: UITableView!
+  @IBOutlet weak var UserLocation: UILabel!
+  @IBOutlet weak var UserImage: UIImageView!
+  @IBOutlet weak var UserName: UILabel!
+  @IBOutlet weak var UserBanner: UIImageView!
   
-  let networkController = NetworkController()
+ 
+  var networkController = NetworkController()
   var tweets = [Tweet]()
+  var userTweetID: String!
+  var tweetUser: Tweet?
   
   override func viewDidLoad() {
     
@@ -21,16 +28,26 @@ class TweetUserViewController: UIViewController, UITableViewDataSource, UITableV
     // Do any additional setup after loading the view, typically from a nib.
     self.tUTableView.dataSource = self
     self.tUTableView.delegate = self
+    self.tUTableView.registerNib(UINib(nibName: "Tweet_Cell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "tweetCell")
+    self.tUTableView.estimatedRowHeight = 144
+    self.tUTableView.rowHeight = UITableViewAutomaticDimension
+    
+    self.UserImage.image = tweetUser?.userImage
+    self.UserLocation.text = tweetUser?.tweetUserLocation
+    self.UserName.text = tweetUser?.userName
+    
+    self.UserBanner.image = tweetUser?.userBannerImage
     //Use network controller to populate view controller tweets
-    self.networkController.fetchUserTweetTL(tweetUserId, completionHandler: { (tweets, errorString) -> () in
-
-      
+    
+    self.networkController.fetchUserTweetTL(self.userTweetID, completionHandler: { (tweets, errorString) -> () in
       if errorString == nil {
         
         self.tweets = tweets!
         self.tUTableView.reloadData()
         
-      } else {
+      }//if
+        
+      else {
         
         //stores UIAlert controller to be used in case of failure to return tweet data
         let networkIssueAlert = UIAlertController(title: "Error", message: "Unable to load data. Connectivity error!", preferredStyle: .Alert)
@@ -39,16 +56,17 @@ class TweetUserViewController: UIViewController, UITableViewDataSource, UITableV
         networkIssueAlert.addAction(cancelButton)
         //presents alert controller
         self.presentViewController(networkIssueAlert, animated: true, completion: nil)
-      }
-      
-    }//fetchHomeTImeline
-  }//viewDidLoad
-  
+      } //else
+    })
+  } //fetchUserTweetTL
+  //viewDidLoad
+
+
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
     return self.tweets.count
     
-  }
+  }//tableViewNumberOfRows
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     
@@ -64,7 +82,7 @@ class TweetUserViewController: UIViewController, UITableViewDataSource, UITableV
       
       self.networkController.fetchUserTweetImage(tweet, completionHandler: { (image) -> () in
         
-        self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+        self.tUTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
       })//fetchUserTweetImage
     }//iftweetimage
     else {
@@ -72,7 +90,7 @@ class TweetUserViewController: UIViewController, UITableViewDataSource, UITableV
     }//else
     return cell
     
-  }
+  }//TableViewCellForRow
   //recognize that cell has been selected
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     //instantiate the view controller you want to go to
@@ -82,15 +100,15 @@ class TweetUserViewController: UIViewController, UITableViewDataSource, UITableV
     
     tweetVC.selectedTweet = tweetToPass
     tweetVC.networkController = self.networkController
-    println(tweetToPass.tweetFavoriteCount)
+  
     //push the veiw controller you want to go to onto the nav stack to go to it.
     self.navigationController?.pushViewController(tweetVC, animated: true)
-  }
+  }//tableViewDidSelect
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
-  }
+  }//Memory Warning
   
   
 }
@@ -106,4 +124,4 @@ class TweetUserViewController: UIViewController, UITableViewDataSource, UITableV
     }
     */
 
-}
+

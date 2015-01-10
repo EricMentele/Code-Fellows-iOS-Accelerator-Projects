@@ -15,6 +15,7 @@ class TweetViewController: UIViewController {
 
   @IBOutlet weak var favoritedLabel: UILabel!
   @IBOutlet weak var tweetTextLabel: UILabel!
+  
   var selectedTweet : Tweet!
   var networkController : NetworkController!
   
@@ -41,6 +42,12 @@ class TweetViewController: UIViewController {
   
   @IBAction func twitterUser(sender: AnyObject) {
     let tweetUserVC = self.storyboard?.instantiateViewControllerWithIdentifier("TweetUser") as TweetUserViewController
+    var userTweetIDToPass = self.selectedTweet.tweetUserID
+    var userTweetToPass = self.selectedTweet
+    
+    tweetUserVC.networkController = self.networkController
+    tweetUserVC.userTweetID = userTweetIDToPass
+    tweetUserVC.tweetUser = userTweetToPass
     
    
     self.navigationController?.pushViewController(tweetUserVC, animated: true)
