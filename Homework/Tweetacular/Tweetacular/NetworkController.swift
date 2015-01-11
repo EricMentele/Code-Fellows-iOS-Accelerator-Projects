@@ -4,7 +4,7 @@
 //
 //  Created by Eric Mentele on 1/7/15.
 //  Copyright (c) 2015 Eric Mentele. All rights reserved.
-//
+//help from Brad Johnson,  Ryan Christensen, One of the TA's  who's name I can't remember at this time.
 import Foundation
 import Accounts
 import Social
@@ -142,11 +142,11 @@ class NetworkController {
                     //println("banner data")
                     tweet.userBannerImage = UIImage(data: bannerData)
                     //println("banner image set!")
-                  }
-                }
-              }
-            }
-          }
+                  }//bannerData
+                }//bannerNSURL
+              }//selectedBannerURL
+            }//bannerResolution
+          }//bannerSize
           NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
             completionHandler(bannerImage: tweet.userBannerImage, nil)
           })//NSOperationQueue

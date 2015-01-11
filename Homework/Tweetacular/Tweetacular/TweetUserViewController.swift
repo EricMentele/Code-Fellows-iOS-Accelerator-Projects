@@ -4,7 +4,7 @@
 //
 //  Created by Eric Mentele on 1/8/15.
 //  Copyright (c) 2015 Eric Mentele. All rights reserved.
-//
+//Help from Brad Johnson
 
 import UIKit
 
