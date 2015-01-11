@@ -1,0 +1,49 @@
+Banner is go for launch
+fetchUserBannerImage did something
+User Banner json[sizes: {
+1500x500 =     {
+h = 500;
+url = "https://pbs.twimg.com/profile_banners/477410739/1401259987/1500x500";
+w = 1500;
+};
+300x100 =     {
+h = 100;
+url = "https://pbs.twimg.com/profile_banners/477410739/1401259987/300x100";
+w = 300;
+};
+600x200 =     {
+h = 200;
+url = "https://pbs.twimg.com/profile_banners/477410739/1401259987/600x200";
+w = 600;
+};
+ipad =     {
+h = 313;
+url = "https://pbs.twimg.com/profile_banners/477410739/1401259987/ipad";
+w = 626;
+};
+"ipad_retina" =     {
+h = 626;
+url = "https://pbs.twimg.com/profile_banners/477410739/1401259987/ipad_retina";
+w = 1252;
+};
+mobile =     {
+h = 160;
+url = "https://pbs.twimg.com/profile_banners/477410739/1401259987/mobile";
+w = 320;
+};
+"mobile_retina" =     {
+h = 320;
+url = "https://pbs.twimg.com/profile_banners/477410739/1401259987/mobile_retina";
+w = 640;
+};
+web =     {
+h = 260;
+url = "https://pbs.twimg.com/profile_banners/477410739/1401259987/web";
+w = 520;
+};
+"web_retina" =     {
+h = 520;
+url = "https://pbs.twimg.com/profile_banners/477410739/1401259987/web_retina";
+w = 1040;
+};
+}]

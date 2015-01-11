@@ -10,13 +10,13 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
   
-  //tableView Outlet
   @IBOutlet weak var tableView: UITableView!
+  
   let networkController = NetworkController()
+  
   var tweets = [Tweet]()
   
   override func viewDidLoad() {
-    
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
     self.tableView.registerNib(UINib(nibName: "Tweet_Cell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "tweetCell")
@@ -66,7 +66,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
       
       self.networkController.fetchUserTweetImage(tweet, completionHandler: { (image) -> () in
         
-        self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+        //self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+        self.tableView.reloadData()
       })//fetchUserTweetImage
     }//iftweetimage
     else {

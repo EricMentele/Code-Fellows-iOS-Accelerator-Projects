@@ -28,7 +28,7 @@ class TweetViewController: UIViewController {
       self.selectedTweet.getTweetInfo(infoDictionary!)
 //      self.selectedTweet.tweetFavoriteCount = infoDictionary!(
       }//if errorString nil
-      println(self.selectedTweet.tweetFavoriteCount)
+      //println(self.selectedTweet.tweetFavoriteCount)
       self.favoritedLabel.text = self.selectedTweet.tweetFavoriteCount
     })//fetchTweetInfoCompletionHandler
     

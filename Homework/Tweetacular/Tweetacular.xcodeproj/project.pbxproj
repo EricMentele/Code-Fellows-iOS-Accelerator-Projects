@@ -11,6 +11,7 @@
 		40C0E4AF1A5F5D7A0077C21B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40C0E4AE1A5F5D7A0077C21B /* Main.storyboard */; };
 		40C0E4B51A5FA2590077C21B /* TweetUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0E4B41A5FA2590077C21B /* TweetUserViewController.swift */; };
 		40CBEA561A606FD100F53798 /* readme in Resources */ = {isa = PBXBuildFile; fileRef = 40CBEA551A606FD100F53798 /* readme */; };
+		40D038AF1A6225E3008ED422 /* user banner json in Resources */ = {isa = PBXBuildFile; fileRef = 40D038AE1A6225E3008ED422 /* user banner json */; };
 		40FEC1821A5C7FBD003E042B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FEC1811A5C7FBD003E042B /* AppDelegate.swift */; };
 		40FEC1841A5C7FBD003E042B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FEC1831A5C7FBD003E042B /* ViewController.swift */; };
 		40FEC1891A5C7FBD003E042B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40FEC1881A5C7FBD003E042B /* Images.xcassets */; };
@@ -37,6 +38,8 @@
 		40C0E4AE1A5F5D7A0077C21B /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		40C0E4B41A5FA2590077C21B /* TweetUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetUserViewController.swift; sourceTree = "<group>"; };
 		40CBEA551A606FD100F53798 /* readme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme; sourceTree = "<group>"; };
+		40D038AE1A6225E3008ED422 /* user banner json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "user banner json"; sourceTree = "<group>"; };
+		40D038B01A623F5D008ED422 /* stacktacular.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = stacktacular.playground; sourceTree = "<group>"; };
 		40FEC17C1A5C7FBD003E042B /* Tweetacular.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tweetacular.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40FEC1801A5C7FBD003E042B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40FEC1811A5C7FBD003E042B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +99,7 @@
 				40FEC1A11A5C8696003E042B /* View Layer */,
 				40FEC17F1A5C7FBD003E042B /* Supporting Files */,
 				40CBEA551A606FD100F53798 /* readme */,
+				40D038B01A623F5D008ED422 /* stacktacular.playground */,
 			);
 			path = Tweetacular;
 			sourceTree = "<group>";
@@ -104,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				40FEC1801A5C7FBD003E042B /* Info.plist */,
+				40D038AE1A6225E3008ED422 /* user banner json */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -242,6 +247,7 @@
 				40C0E4AB1A5F59A00077C21B /* Tweet_Cell.xib in Resources */,
 				40FEC18C1A5C7FBD003E042B /* LaunchScreen.xib in Resources */,
 				40FEC1891A5C7FBD003E042B /* Images.xcassets in Resources */,
+				40D038AF1A6225E3008ED422 /* user banner json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

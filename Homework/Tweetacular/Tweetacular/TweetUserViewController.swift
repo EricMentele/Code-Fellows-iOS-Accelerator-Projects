@@ -20,7 +20,7 @@ class TweetUserViewController: UIViewController, UITableViewDataSource, UITableV
   var networkController = NetworkController()
   var tweets = [Tweet]()
   var userTweetID: String!
-  var tweetUser: Tweet?
+  var tweetUser: Tweet!
   
   override func viewDidLoad() {
     
@@ -36,11 +36,11 @@ class TweetUserViewController: UIViewController, UITableViewDataSource, UITableV
     self.UserLocation.text = tweetUser?.tweetUserLocation
     self.UserName.text = tweetUser?.userName
     
-    self.UserBanner.image = tweetUser?.userBannerImage
-    //Use network controller to populate view controller tweets
+    //self.UserBanner.image = tweetUser?.userBannerImage
+    //Use network controller to populate TweetUser tweets
     
-    self.networkController.fetchUserTweetTL(self.userTweetID, completionHandler: { (tweets, errorString) -> () in
-      if errorString == nil {
+    self.networkController.fetchUserTweetTL(self.userTweetID, completionHandler: { (tweets, error) -> () in
+      if error == nil {
         
         self.tweets = tweets!
         self.tUTableView.reloadData()
@@ -57,9 +57,26 @@ class TweetUserViewController: UIViewController, UITableViewDataSource, UITableV
         //presents alert controller
         self.presentViewController(networkIssueAlert, animated: true, completion: nil)
       } //else
-    })
-  } //fetchUserTweetTL
-  //viewDidLoad
+    }) //fetchUserTweetTL
+    
+    self.networkController.fetchUserBannerImage(self.tweetUser, completionHandler: { (bannerImage, error) -> () in
+      if error == nil {
+        
+        println("fetchUserBannerImage did something")
+        self.UserBanner.image = self.tweetUser.userBannerImage //add
+        
+      }
+      else {
+        
+        self.UserBanner.image = self.tweetUser.userImage
+
+      }
+    })//fetchUserBannerImage
+    
+  } //viewDidLoad
+  
+  
+ 
 
 
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -82,7 +99,8 @@ class TweetUserViewController: UIViewController, UITableViewDataSource, UITableV
       
       self.networkController.fetchUserTweetImage(tweet, completionHandler: { (image) -> () in
         
-        self.tUTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+        //self.tUTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+        self.tUTableView.reloadData()
       })//fetchUserTweetImage
     }//iftweetimage
     else {
