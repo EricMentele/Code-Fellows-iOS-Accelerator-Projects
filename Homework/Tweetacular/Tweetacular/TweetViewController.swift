@@ -10,51 +10,37 @@ import UIKit
 
 class TweetViewController: UIViewController {
   @IBOutlet weak var tweetLabel: UILabel!
-  
   @IBOutlet weak var userImageButton: UIButton!
-
   @IBOutlet weak var favoritedLabel: UILabel!
   @IBOutlet weak var tweetTextLabel: UILabel!
-  
   var selectedTweet : Tweet!
   var networkController : NetworkController!
-  
     override func viewDidLoad() {
-        super.viewDidLoad()
-      
-    self.networkController.fetchTweetInfo(self.selectedTweet.tweetId, completionHandler: { (infoDictionary, errorString) -> () in
-      if errorString == nil {
-        
-      self.selectedTweet.getTweetInfo(infoDictionary!)
-//      self.selectedTweet.tweetFavoriteCount = infoDictionary!(
-      }//if errorString nil
-      //println(self.selectedTweet.tweetFavoriteCount)
-      self.favoritedLabel.text = self.selectedTweet.tweetFavoriteCount
-    })//fetchTweetInfoCompletionHandler
-    
+      super.viewDidLoad()
+      //use network controller to fetch favorites count for tweet
+      getTweetInfo()
       self.tweetLabel.text = self.selectedTweet!.userName
       self.tweetTextLabel.text = selectedTweet.text
-      
       self.userImageButton.setBackgroundImage(selectedTweet.userImage, forState: UIControlState.Normal)
         // Do any additional setup after loading the view.
-  
     }//viewdidload
-  
+  func getTweetInfo() {
+    self.networkController.fetchTweetInfo(self.selectedTweet.tweetId, completionHandler: { (infoDictionary, errorString) -> () in
+      if errorString == nil {
+        self.selectedTweet.getTweetInfo(infoDictionary!)
+      }//if errorString nil
+      self.favoritedLabel.text = self.selectedTweet.tweetFavoriteCount
+    })//fetchTweetInfoCompletionHandler
+  }//getTweetInfo
   @IBAction func twitterUser(sender: AnyObject) {
     let tweetUserVC = self.storyboard?.instantiateViewControllerWithIdentifier("TweetUser") as TweetUserViewController
     var userTweetIDToPass = self.selectedTweet.tweetUserID
     var userTweetToPass = self.selectedTweet
-    
     tweetUserVC.networkController = self.networkController
     tweetUserVC.userTweetID = userTweetIDToPass
     tweetUserVC.tweetUser = userTweetToPass
-    
-   
     self.navigationController?.pushViewController(tweetUserVC, animated: true)
-    
   }//twitterUserButton
-  
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -177,20 +177,20 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ymM-pE-evD">
-                                            <rect key="frame" x="244" y="45" width="80" height="80"/>
+                                            <rect key="frame" x="8" y="82" width="80" height="80"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="80" id="HBs-jq-k0G"/>
-                                                <constraint firstAttribute="height" constant="80" id="Huk-UY-kfK"/>
+                                                <constraint firstAttribute="width" constant="80" id="F83-Xi-bte"/>
+                                                <constraint firstAttribute="height" constant="80" id="HEz-U4-4Pp"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C0W-uo-naf">
-                                            <rect key="frame" x="218" y="133" width="133" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Location Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wsJ-XV-T9O">
+                                            <rect key="frame" x="8" y="8" width="154" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Location Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wsJ-XV-T9O">
-                                            <rect key="frame" x="207" y="16" width="154" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C0W-uo-naf">
+                                            <rect key="frame" x="96" y="141" width="133" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -198,18 +198,16 @@
                                     </subviews>
                                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstItem="C0W-uo-naf" firstAttribute="top" secondItem="ymM-pE-evD" secondAttribute="bottom" constant="8" id="CQn-Cf-DSg"/>
-                                        <constraint firstAttribute="centerX" secondItem="C0W-uo-naf" secondAttribute="centerX" id="F75-VC-21j"/>
-                                        <constraint firstItem="wsJ-XV-T9O" firstAttribute="top" secondItem="gOT-rE-GHD" secondAttribute="top" constant="16" id="WoO-9l-3yY"/>
-                                        <constraint firstAttribute="bottom" secondItem="C0W-uo-naf" secondAttribute="bottom" constant="16" id="iex-SW-ZZy"/>
-                                        <constraint firstAttribute="centerX" secondItem="ymM-pE-evD" secondAttribute="centerX" id="jJG-DX-9E7"/>
-                                        <constraint firstAttribute="centerX" secondItem="wsJ-XV-T9O" secondAttribute="centerX" id="ktU-G5-Nen"/>
-                                        <constraint firstAttribute="centerY" secondItem="ymM-pE-evD" secondAttribute="centerY" id="q6w-QD-Xs5"/>
-                                        <constraint firstItem="ymM-pE-evD" firstAttribute="top" secondItem="wsJ-XV-T9O" secondAttribute="bottom" constant="8" id="qZN-0a-VOp"/>
+                                        <constraint firstItem="ymM-pE-evD" firstAttribute="leading" secondItem="gOT-rE-GHD" secondAttribute="leading" constant="8" id="LwH-fM-xAD"/>
+                                        <constraint firstAttribute="bottom" secondItem="ymM-pE-evD" secondAttribute="bottom" constant="8" id="O8v-mj-rVF"/>
+                                        <constraint firstItem="wsJ-XV-T9O" firstAttribute="leading" secondItem="gOT-rE-GHD" secondAttribute="leading" constant="8" id="UvD-Xl-7hM"/>
+                                        <constraint firstItem="wsJ-XV-T9O" firstAttribute="top" secondItem="gOT-rE-GHD" secondAttribute="top" constant="8" id="Xz1-Dy-DVa"/>
+                                        <constraint firstAttribute="bottom" secondItem="C0W-uo-naf" secondAttribute="bottom" constant="8" id="oeJ-ec-rR9"/>
+                                        <constraint firstItem="C0W-uo-naf" firstAttribute="leading" secondItem="ymM-pE-evD" secondAttribute="trailing" constant="8" id="tNb-FQ-iMW"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="eXg-TF-hav">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tweetCell" id="eXg-TF-hav">
                                         <rect key="frame" x="0.0" y="0.0" width="568" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eXg-TF-hav" id="Jd5-uP-qQm">

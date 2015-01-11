@@ -14,11 +14,11 @@ class NetworkController {
   var myTwitterAccount : ACAccount?
   //NS OperationQueue for loading images
   var imageQueue = NSOperationQueue()
-    init() {
+  init() {
       //empty init to comply with optional property.
   }
 ////////////////////////////////////////////HOME TIMELINE///////////////////////////////////////////////////////
-   func fetchHomeTimeline ( completionHandler : ([Tweet]?, String?) -> ()) {
+  func fetchHomeTimeline ( completionHandler : ([Tweet]?, String?) -> ()) {
     //set up ACAccountStore object
     let accountStore = ACAccountStore()
     //configure account for Twitter
@@ -110,14 +110,10 @@ class NetworkController {
           tweet.userImage = UIImage(data: imageData)
           NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
             completionHandler(tweet.userImage)
-          })
-          //return tweet.image!
-          //        cell.tweetImageView.image = tweet.image
+          })//NSOperationQueue
         }//optional chained imageData
-        
       })//imageQueue.addOperationWithBlock
     }//optional imageURL
-
   }//fetchUserTweetImage
 ///////////////////////////////////////FETCH BANNER IMAGE/////////////////////////////////////////////////
   func fetchUserBannerImage (tweet: Tweet, completionHandler: (bannerImage: UIImage?, String?) -> ()) {
@@ -135,23 +131,22 @@ class NetworkController {
           //serialize returned json data for use
         if let jsonDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [String: AnyObject] {
           if let bannerSize = jsonDictionary["sizes"] as? [String: AnyObject] {
-            println("banner size!")
+            //println("banner size!")
             if let bannerResolution = bannerSize["mobile_retina"] as? [String: AnyObject] {
-              println("banner resolution")
+              //println("banner resolution")
               if let selectedBannerURL = bannerResolution["url"] as? String {
-                println("selected banner url \(selectedBannerURL)")
+                //println("selected banner url")
                 if let bannerNSURL = NSURL(string: selectedBannerURL) {
-                  println("bannerNSURL\(bannerNSURL)")
+                  //println("bannerNSURL")
                   if let bannerData = NSData(contentsOfURL: bannerNSURL) {
-                    println("banner data \(bannerData)")
+                    //println("banner data")
                     tweet.userBannerImage = UIImage(data: bannerData)
-                    println("banner image set!")
+                    //println("banner image set!")
                   }
                 }
               }
             }
           }
-          
           NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
             completionHandler(bannerImage: tweet.userBannerImage, nil)
           })//NSOperationQueue
@@ -164,11 +159,8 @@ class NetworkController {
       }//if error
     }//twitter request
   }//fetchUserBannerImage
-  
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
-  
   func fetchUserTweetTL (userid: String, completionHandler: ([Tweet]?, String?) -> ()) {
-    
     let userRequestURL = NSURL(string: "https://api.twitter.com/1.1/statuses/user_timeline.json?user_id=\(userid)")
     let twitterRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: userRequestURL!, parameters: nil)
     twitterRequest.account = self.myTwitterAccount
@@ -199,10 +191,4 @@ class NetworkController {
       }//if error nil
     }//Twitter Request
   }//fetchUserTweetTL
-
 }//Network Controller
-
-
-
-
-

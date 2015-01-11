@@ -9,24 +9,14 @@
 import UIKit
 
 class TweetCell: UITableViewCell {
-  
   @IBOutlet weak var tweetImage: UIImageView!
-  
   @IBOutlet weak var nameLabel: UILabel!
-  
   @IBOutlet weak var tweetText: UILabel!
-  
-  
   override func awakeFromNib() {
-    
     super.awakeFromNib()
-    
   }
-  
   override func setSelected(selected: Bool, animated: Bool) {
-    
     super.setSelected(selected, animated: animated)
-    
   }
   
   //fix for automatic height issue

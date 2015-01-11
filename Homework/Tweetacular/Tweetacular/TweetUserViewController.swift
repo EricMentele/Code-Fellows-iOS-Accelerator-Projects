@@ -9,21 +9,16 @@
 import UIKit
 
 class TweetUserViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
   @IBOutlet weak var tUTableView: UITableView!
   @IBOutlet weak var UserLocation: UILabel!
   @IBOutlet weak var UserImage: UIImageView!
   @IBOutlet weak var UserName: UILabel!
   @IBOutlet weak var UserBanner: UIImageView!
-  
- 
   var networkController = NetworkController()
   var tweets = [Tweet]()
   var userTweetID: String!
   var tweetUser: Tweet!
-  
   override func viewDidLoad() {
-    
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
     self.tUTableView.dataSource = self
@@ -31,24 +26,21 @@ class TweetUserViewController: UIViewController, UITableViewDataSource, UITableV
     self.tUTableView.registerNib(UINib(nibName: "Tweet_Cell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "tweetCell")
     self.tUTableView.estimatedRowHeight = 144
     self.tUTableView.rowHeight = UITableViewAutomaticDimension
-    
     self.UserImage.image = tweetUser?.userImage
     self.UserLocation.text = tweetUser?.tweetUserLocation
     self.UserName.text = tweetUser?.userName
-    
-    //self.UserBanner.image = tweetUser?.userBannerImage
+    self.UserBanner.image = tweetUser?.userBannerImage
     //Use network controller to populate TweetUser tweets
-    
+    getTweetUserTimeline()
+    //useNetwork Controller to set banner image
+    getTweetUserBannerImage()
+      } //viewDidLoad
+  func getTweetUserTimeline() {
     self.networkController.fetchUserTweetTL(self.userTweetID, completionHandler: { (tweets, error) -> () in
       if error == nil {
-        
         self.tweets = tweets!
         self.tUTableView.reloadData()
-        
-      }//if
-        
-      else {
-        
+      } else {
         //stores UIAlert controller to be used in case of failure to return tweet data
         let networkIssueAlert = UIAlertController(title: "Error", message: "Unable to load data. Connectivity error!", preferredStyle: .Alert)
         //adds a cancell button to dismiss alert
@@ -56,79 +48,51 @@ class TweetUserViewController: UIViewController, UITableViewDataSource, UITableV
         networkIssueAlert.addAction(cancelButton)
         //presents alert controller
         self.presentViewController(networkIssueAlert, animated: true, completion: nil)
-      } //else
+      } //ifError
     }) //fetchUserTweetTL
-    
+  }//getTweetUserTimeline
+  func getTweetUserBannerImage() {
     self.networkController.fetchUserBannerImage(self.tweetUser, completionHandler: { (bannerImage, error) -> () in
       if error == nil {
-        
         println("fetchUserBannerImage did something")
-        self.UserBanner.image = self.tweetUser.userBannerImage //add
-        
-      }
-      else {
-        
+        self.UserBanner.image = self.tweetUser.userBannerImage
+      } else {
         self.UserBanner.image = self.tweetUser.userImage
-
-      }
+      }//ifError
     })//fetchUserBannerImage
-    
-  } //viewDidLoad
-  
-  
- 
-
-
+  }//getBannerImage
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    
     return self.tweets.count
-    
   }//tableViewNumberOfRows
-  
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    
     let cell = tableView.dequeueReusableCellWithIdentifier("tweetCell", forIndexPath: indexPath) as TweetCell
-    
     let tweet = self.tweets[indexPath.row]
-    
     cell.tweetText.text = tweet.text
-    
     cell.nameLabel.text = tweet.userName
-    
     if tweet.userImage == nil {
-      
       self.networkController.fetchUserTweetImage(tweet, completionHandler: { (image) -> () in
-        
         //self.tUTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
         self.tUTableView.reloadData()
       })//fetchUserTweetImage
-    }//iftweetimage
-    else {
+    } else {
       cell.tweetImage.image = tweet.userImage
-    }//else
+    }//iftweetimage
     return cell
-    
   }//TableViewCellForRow
   //recognize that cell has been selected
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     //instantiate the view controller you want to go to
     let tweetVC = self.storyboard?.instantiateViewControllerWithIdentifier("tweetVC") as TweetViewController
-    
     var tweetToPass = self.tweets[indexPath.row]
-    
     tweetVC.selectedTweet = tweetToPass
     tweetVC.networkController = self.networkController
-  
     //push the veiw controller you want to go to onto the nav stack to go to it.
     self.navigationController?.pushViewController(tweetVC, animated: true)
   }//tableViewDidSelect
-  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }//Memory Warning
-  
-  
 }
     
 
