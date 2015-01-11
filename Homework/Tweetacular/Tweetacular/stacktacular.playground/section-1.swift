@@ -11,15 +11,17 @@ class Stacktacular {
   }//push
   //peek allows you to see the item on top of the stack.
   func peek() -> String? {
-    var status: String {
-      if !stack.isEmpty {
-        return stack.last!
-      }
-      else {
-        return "Empty"
-      }
-    }
-    return status
+    //var status: String {
+      //if !stack.isEmpty {
+
+        //return stack.last!
+      //}
+      //else {
+        //return "Empty"
+        //println(Empty)
+      //}
+    //}
+    return stack.last
   }//peek
   //pop takes the last item placed on the stack, off of the stack.
   func pop() {
