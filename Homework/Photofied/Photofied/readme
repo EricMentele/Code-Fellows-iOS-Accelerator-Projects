@@ -1,0 +1,6 @@
+Monday
+
+Setup your interface with the Nav Controller, the photo button at the bottom, and an image view that takes up most of the screen. Use autolayout in code to properly layout your interface
+Add an alert controller with the style set to action sheet
+Add a gallery action that pushes a gallery view controller onto the nav controller
+In the gallery view controller, display at least 6 photos in your gallery (https://unsplash.com is great)

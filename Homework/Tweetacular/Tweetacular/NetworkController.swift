@@ -15,9 +15,9 @@ class NetworkController {
   //NS OperationQueue for loading images
   var imageQueue = NSOperationQueue()
   init() {
-      //empty init to comply with optional property.
+    //empty init to comply with optional property.
   }
-////////////////////////////////////////////HOME TIMELINE///////////////////////////////////////////////////////
+  ////////////////////////////////////////////HOME TIMELINE///////////////////////////////////////////////////////
   func fetchHomeTimeline ( completionHandler : ([Tweet]?, String?) -> ()) {
     //set up ACAccountStore object
     let accountStore = ACAccountStore()
@@ -43,7 +43,7 @@ class NetworkController {
           twitterRequest.performRequestWithHandler(){ (data, response, error) -> Void in
             //use switch for returned status codes
             switch response.statusCode {
-            //status codes for success
+              //status codes for success
             case 200...299: println("Go for launch!")
             //store json data returned from Twitter in array with NSJSONSerialization
             if let jsonArray = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [AnyObject] {
@@ -61,13 +61,13 @@ class NetworkController {
                   tweets.append(tweet)
                   //switch back to main thread
                   NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                        //call completion handler for end of operation.
-                        completionHandler(tweets,nil)
+                    //call completion handler for end of operation.
+                    completionHandler(tweets,nil)
                   })//NSOperationQueue
                 }//jsonDictionary
               }//for object
-            }//jsonArray
-            //return codes designating a problem.
+              }//jsonArray
+              //return codes designating a problem.
             case 300...599:
               println("We got a problem!")
               completionHandler(nil, "We got a problem")
@@ -78,31 +78,31 @@ class NetworkController {
       }//if granted
     }//accountStoreRequestWithType
   }//fetchHomeTimeline
-////////////////////////////////////////////////TWEET INFO///////////////////////////////////////////////////////
+  ////////////////////////////////////////////////TWEET INFO///////////////////////////////////////////////////////
   //This function is used to get more information about a single tweet from the Home Timeline tweets. It does this by interpolating the tweet's id into the relatied Twitter api url.
   func fetchTweetInfo (tweetID: String? ,completionHandler : ([String: AnyObject]?, String?) -> ()) {
-          let twitterInfoURL = NSURL(string: "https://api.twitter.com/1.1/statuses/show.json?id=\(tweetID!)")
-          let twitterRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: twitterInfoURL, parameters: nil)
-          twitterRequest.account = self.myTwitterAccount
-          twitterRequest.performRequestWithHandler(){ (data, response, error) -> Void in
-            if error == nil {
-              switch response.statusCode {
-              case 200...299: println("Go for launch again!")
-              if let jsonDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [String:AnyObject] {
-                    //println("TweetInfo jsonDictionary \(jsonDictionary)")
-                    NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                      completionHandler(jsonDictionary,nil)
-                    })//NSOperationQueue
-                }//jsonDictionary
-              case 300...599:
-                println("We got a problem!: ")
-                completionHandler(nil, "We got a problem")
-              default: println("response defaulted")
-              }//switch
-            }//if error
-          }//Twitter request with handler
-        }//fetchTweetInfo
-////////////////////////////////////////////////USER IMAGE///////////////////////////////////////////////////////
+    let twitterInfoURL = NSURL(string: "https://api.twitter.com/1.1/statuses/show.json?id=\(tweetID!)")
+    let twitterRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: twitterInfoURL, parameters: nil)
+    twitterRequest.account = self.myTwitterAccount
+    twitterRequest.performRequestWithHandler(){ (data, response, error) -> Void in
+      if error == nil {
+        switch response.statusCode {
+        case 200...299: println("Go for launch again!")
+        if let jsonDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [String:AnyObject] {
+          //println("TweetInfo jsonDictionary \(jsonDictionary)")
+          NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+            completionHandler(jsonDictionary,nil)
+          })//NSOperationQueue
+          }//jsonDictionary
+        case 300...599:
+          println("We got a problem!: ")
+          completionHandler(nil, "We got a problem")
+        default: println("response defaulted")
+        }//switch
+      }//if error
+    }//Twitter request with handler
+  }//fetchTweetInfo
+  ////////////////////////////////////////////////USER IMAGE///////////////////////////////////////////////////////
   func fetchUserTweetImage (tweet: Tweet, completionHandler: (UIImage?) -> ()) {
     if let imageURL = NSURL(string: tweet.userImageURL) {
       self.imageQueue.addOperationWithBlock({ () -> Void in
@@ -115,7 +115,7 @@ class NetworkController {
       })//imageQueue.addOperationWithBlock
     }//optional imageURL
   }//fetchUserTweetImage
-///////////////////////////////////////FETCH BANNER IMAGE/////////////////////////////////////////////////
+  ///////////////////////////////////////FETCH BANNER IMAGE/////////////////////////////////////////////////
   func fetchUserBannerImage (tweet: Tweet, completionHandler: (bannerImage: UIImage?, String?) -> ()) {
     //design a new network request to the twitter api for the banner image .
     let RequestURL = NSURL(string: "https://api.twitter.com/1.1/users/profile_banner.json?user_id=\(tweet.tweetUserID)")
@@ -128,7 +128,7 @@ class NetworkController {
         //decide what to do based on the response status code
         switch response.statusCode {
         case 200...299: println("Banner is go for launch")
-          //serialize returned json data for use
+        //serialize returned json data for use
         if let jsonDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [String: AnyObject] {
           if let bannerSize = jsonDictionary["sizes"] as? [String: AnyObject] {
             //println("banner size!")
@@ -159,7 +159,7 @@ class NetworkController {
       }//if error
     }//twitter request
   }//fetchUserBannerImage
-///////////////////////////////////////////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////
   func fetchUserTweetTL (userid: String, completionHandler: ([Tweet]?, String?) -> ()) {
     let userRequestURL = NSURL(string: "https://api.twitter.com/1.1/statuses/user_timeline.json?user_id=\(userid)")
     let twitterRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: userRequestURL!, parameters: nil)
