@@ -101,9 +101,8 @@ class ViewController: UIViewController, ImageSelectedProtocol, UICollectionViewD
     let filter = UIAlertAction(title: "Filter", style: UIAlertActionStyle.Default) { (action) -> Void in
       println("filter button pressed")
       //animate image view size
-      self.resizer(vCArray:self.mainImageViewSizeAnimateConstraintH,hCArray: self.mainImageViewSizeAnimateConstraintV,vcs: 10,hcs: 120)
-      self.mainImageViewPosAnimationConstraintV.constant = 10
-      self.navigationController?.navigationBarHidden = true
+      self.resizer(vCArray: self.mainImageViewSizeAnimateConstraintV, hCArray: self.mainImageViewSizeAnimateConstraintH, vcs: 120, hcs: 20, vAnim: 20)
+      //self.mainImageViewPosAnimationConstraintV.constant = 10
       
       //animate collection view when filter button is pressed.
       self.collectionViewVAnimateConstraint.constant = 5
@@ -139,8 +138,7 @@ class ViewController: UIViewController, ImageSelectedProtocol, UICollectionViewD
     self.navShare = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: "sharePressed")
     self.navigationItem.rightBarButtonItem = self.navShare
 
-    let options = [kCIContextWorkingColorSpace : NSNull()] // helps keep things fast
-    //    let EAGLContext = EAGLContext( EAGLRenderingAPI.OpenGLES2)
+    let options = [kCIContextWorkingColorSpace : NSNull()]
     let eaglContext = EAGLContext(API: EAGLRenderingAPI.OpenGLES2)
     self.gpuContext = CIContext(EAGLContext: eaglContext, options: options)
     self.setupThumbnails()
@@ -204,6 +202,8 @@ class ViewController: UIViewController, ImageSelectedProtocol, UICollectionViewD
   func donePressed() {
     println("done pressed")
     self.collectionViewVAnimateConstraint.constant = -120
+    self.resizer(vCArray:self.mainImageViewSizeAnimateConstraintH,hCArray: self.mainImageViewSizeAnimateConstraintV,vcs: 0,hcs: 0, vAnim: 0)
+
     UIView.animateWithDuration(0.4, animations: { () -> Void in
       self.view.layoutIfNeeded()
     })
@@ -227,7 +227,7 @@ class ViewController: UIViewController, ImageSelectedProtocol, UICollectionViewD
       println("got origin!")
       if thumbnail.filteredImage == nil {
         println("filtered image commence!")
-        thumbnail.generateFilteredImage()
+        thumbnail.generateFilteredImage(thumbnail.originImage!, filterType: thumbnail.filterType)
         cell.imageView.image = thumbnail.filteredImage!
       }//if thumbnail
     }//if thumbnail
@@ -239,23 +239,42 @@ class ViewController: UIViewController, ImageSelectedProtocol, UICollectionViewD
     return self.thumbnails.count
   }
   
-  func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+//  func generateFilteredImage(image: UIImage) {
+//    
+//    let filterSelector = self.thumbnails[indexPath.row]
+//    let startImage = CIImage(image: image)
+//    let filter = CIFilter(name: self.thumbnails.[indexPath.row]
+//      filter.setDefaults()
+//      filter.setValue(startImage, forKey: kCIInputImageKey)
+//      let result = filter.valueForKey(kCIOutputImageKey) as CIImage
+//      let extent = result.extent()
+//      let imageRef = self.gpuContext.createCGImage(result, fromRect: extent)
+//      self.filteredImage = UIImage(CGImage: imageRef)
+//    
+//  }//generateFiltered
+
+  
+  //MARK: Did Select Item VC CollectionView
+  func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    let filterCarrier = thumbnails[indexPath.row] as Thumbnail
+    filterCarrier.generateFilteredImage(mainImageView.image!, filterType: filterCarrier.filterType)
+    self.mainImageView.image = filterCarrier.filteredImage
+    //Thumbnail.generateFilteredImage(self.mainImageView.image, filterCarrier.filterType)
     
-    self.collectionViewVAnimateConstraint.constant = -120
-    let selectedImage = thumbnails[indexPath.row]
-    self.mainImageView.image = selectedImage.filteredImage
-    self.resizer(vCArray:self.mainImageViewSizeAnimateConstraintH,hCArray: self.mainImageViewSizeAnimateConstraintV,vcs: 0,hcs: 0)
-    self.mainImageViewPosAnimationConstraintV.constant = 0
-    self.navigationController?.navigationBarHidden = false
-    
-  }
+      }
   
   
-  
-  func resizer(#vCArray: [NSLayoutConstraint], hCArray: [NSLayoutConstraint], vcs: CGFloat, hcs: CGFloat) {
-    
+  func resizer(#vCArray: [NSLayoutConstraint], hCArray: [NSLayoutConstraint], vcs: CGFloat, hcs: CGFloat, vAnim: CGFloat) {
+    //if cs
     for cs in vCArray {
       cs.constant = vcs
+      if cs.firstItem.isEqual(self.mainImageView) {
+        println(cs.constant)
+        if cs.firstAttribute == NSLayoutAttribute.Top {
+          cs.constant = vAnim
+          println(cs.constant)
+        }
+      }
     }
     for cs in hCArray {
       cs.constant = hcs
@@ -279,12 +298,12 @@ class ViewController: UIViewController, ImageSelectedProtocol, UICollectionViewD
     let imageView = views["imageView"] as UIView!
     let imageViewConstraintH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-[imageView]-|", options: nil, metrics: nil, views: views)
     rootView.addConstraints(imageViewConstraintH)
-    let imageViewConstraintV = NSLayoutConstraint.constraintsWithVisualFormat("V:|[navSpacer]-[imageView]-8-|", options: nil, metrics: nil, views: views)
+    let imageViewConstraintV = NSLayoutConstraint.constraintsWithVisualFormat("V:[navSpacer]-[imageView]-8-|", options: nil, metrics: nil, views: views)
     rootView.addConstraints(imageViewConstraintV)
     
     self.mainImageViewSizeAnimateConstraintH = imageViewConstraintH as [NSLayoutConstraint]
     self.mainImageViewSizeAnimateConstraintV = imageViewConstraintV as [NSLayoutConstraint]
-    self.mainImageViewPosAnimationConstraintV = imageViewConstraintV.first as NSLayoutConstraint
+    //self.mainImageViewPosAnimationConstraintV = imageViewConstraintV.first as NSLayoutConstraint
     
     //////////////NAV SPACER/////////////////////
     let navSpacer = views["navSpacer"] as UIImageView!
@@ -292,6 +311,7 @@ class ViewController: UIViewController, ImageSelectedProtocol, UICollectionViewD
     let navSpacerConstraintHeight = NSLayoutConstraint.constraintsWithVisualFormat("V:[navSpacer(72)]", options: nil, metrics: nil, views: views)
     rootView.addConstraints(navSpacerConstraintHeight)
     rootView.addConstraints(navSpacerConstraintV)
+    
     /////////////COLLECTION VIEW////////////////
     var collectionView = views["collectionView"] as UICollectionView!
     let collectionViewConstraintH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-[collectionView]-|", options: nil, metrics: nil, views: views)
