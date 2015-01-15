@@ -8,10 +8,17 @@
 
 import UIKit
 
-class PhotoGalleryViewController: UIViewController, UICollectionViewDataSource {
+protocol ImageSelectedProtocol {
+  
+  func controllerDidSelectImage(UIImage) -> Void
+  
+}//ImageSelectedProtocol
+
+class PhotoGalleryViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
   
   var collectionView : UICollectionView!
   var images = [UIImage]()
+  var delegate : ImageSelectedProtocol?
   
   override func loadView() {
     
@@ -20,9 +27,10 @@ class PhotoGalleryViewController: UIViewController, UICollectionViewDataSource {
     self.collectionView = UICollectionView(frame: rootView.frame, collectionViewLayout: collectionViewFlowLayout)
     rootView.addSubview(self.collectionView)
     self.collectionView.dataSource = self
-    self.view = rootView
+    self.collectionView.delegate = self
     collectionViewFlowLayout.itemSize = CGSize(width: 200, height: 200)
-  }
+    self.view = rootView
+  }//loadView
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,25 +48,32 @@ class PhotoGalleryViewController: UIViewController, UICollectionViewDataSource {
       self.images.append(image4!)
       self.images.append(image5!)
       self.images.append(image6!)
-      
-      
-      
-      
         // Do any additional setup after loading the view.
-    }
+    }//viewDidLoad
 
   //MARK: UICollectionViewDataSource
   
   func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return self.images.count
-  }
+  }//collectionView
   
   func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCellWithReuseIdentifier("GalleryCell", forIndexPath: indexPath) as GalleryCell
     let image = self.images[indexPath.row]
     cell.imageView.image = image
     return cell
+  }//collectionView
+  
+  //MARK: UICollectionViewDelegate
+  
+  func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    
+    self.delegate?.controllerDidSelectImage(self.images[indexPath.row])
+    self.navigationController?.popToRootViewControllerAnimated(true)
+    
   }
+  
+  
     
 
     /*

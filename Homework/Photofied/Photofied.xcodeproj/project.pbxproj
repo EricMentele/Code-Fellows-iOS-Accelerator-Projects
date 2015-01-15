@@ -21,6 +21,8 @@
 		400613871A64A7C100D28F29 /* image4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 400613861A64A7C100D28F29 /* image4.jpeg */; };
 		400613891A64A7C800D28F29 /* image5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 400613881A64A7C800D28F29 /* image5.jpeg */; };
 		4006138B1A64B1A500D28F29 /* image6.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4006138A1A64B1A500D28F29 /* image6.jpeg */; };
+		400BB78F1A65FF3300988DDF /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400BB78E1A65FF3300988DDF /* Thumbnail.swift */; };
+		40FBE8651A671D8B00D6F273 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FBE8641A671D8B00D6F273 /* PhotosViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		400613861A64A7C100D28F29 /* image4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image4.jpeg; sourceTree = "<group>"; };
 		400613881A64A7C800D28F29 /* image5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image5.jpeg; sourceTree = "<group>"; };
 		4006138A1A64B1A500D28F29 /* image6.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image6.jpeg; sourceTree = "<group>"; };
+		400BB78E1A65FF3300988DDF /* Thumbnail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
+		40FBE8641A671D8B00D6F273 /* PhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,10 +151,11 @@
 		400613771A646F8300D28F29 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				40FBE8641A671D8B00D6F273 /* PhotosViewController.swift */,
+				4006137D1A6472B000D28F29 /* GalleryItem.swift */,
 				400613561A646F6400D28F29 /* AppDelegate.swift */,
 				400613581A646F6400D28F29 /* ViewController.swift */,
 				4006137B1A64727E00D28F29 /* PhotoGalleryViewController.swift */,
-				4006137D1A6472B000D28F29 /* GalleryItem.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -158,6 +163,7 @@
 		400613781A646FEC00D28F29 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				400BB78E1A65FF3300988DDF /* Thumbnail.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -272,6 +278,8 @@
 				400613591A646F6400D28F29 /* ViewController.swift in Sources */,
 				4006137C1A64727E00D28F29 /* PhotoGalleryViewController.swift in Sources */,
 				400613571A646F6400D28F29 /* AppDelegate.swift in Sources */,
+				40FBE8651A671D8B00D6F273 /* PhotosViewController.swift in Sources */,
+				400BB78F1A65FF3300988DDF /* Thumbnail.swift in Sources */,
 				4006137E1A6472B000D28F29 /* GalleryItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -456,6 +464,7 @@
 				400613721A646F6500D28F29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		400613731A646F6500D28F29 /* Build configuration list for PBXNativeTarget "PhotofiedTests" */ = {
 			isa = XCConfigurationList;
@@ -464,6 +473,7 @@
 				400613751A646F6500D28F29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
