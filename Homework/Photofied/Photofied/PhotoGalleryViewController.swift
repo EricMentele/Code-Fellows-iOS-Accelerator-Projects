@@ -19,22 +19,27 @@ class PhotoGalleryViewController: UIViewController, UICollectionViewDataSource, 
   var collectionView : UICollectionView!
   var images = [UIImage]()
   var delegate : ImageSelectedProtocol?
+  var collectionViewFlowLayout : UICollectionViewFlowLayout!
+
   
   override func loadView() {
     
     let rootView = UIView(frame: UIScreen.mainScreen().bounds)
-    let collectionViewFlowLayout = UICollectionViewFlowLayout()
+    self.collectionViewFlowLayout = UICollectionViewFlowLayout()
     self.collectionView = UICollectionView(frame: rootView.frame, collectionViewLayout: collectionViewFlowLayout)
     rootView.addSubview(self.collectionView)
     self.collectionView.dataSource = self
     self.collectionView.delegate = self
-    collectionViewFlowLayout.itemSize = CGSize(width: 200, height: 200)
+    collectionViewFlowLayout.itemSize = CGSize(width: 100, height: 100)
+    
     self.view = rootView
   }//loadView
 
     override func viewDidLoad() {
         super.viewDidLoad()
       self.view.backgroundColor = UIColor.grayColor()
+      let pinchGesture = UIPinchGestureRecognizer(target: self, action: "pinched:")
+      self.collectionView.addGestureRecognizer(pinchGesture)
       self.collectionView.registerClass(GalleryCell.self, forCellWithReuseIdentifier: "GalleryCell")
       let image1 = UIImage(named: "image1.jpeg")
       let image2 = UIImage(named: "image2.jpeg")
@@ -57,6 +62,22 @@ class PhotoGalleryViewController: UIViewController, UICollectionViewDataSource, 
     return self.images.count
   }//collectionView
   
+  func pinched (sender: UIPinchGestureRecognizer) {
+    
+    self.collectionView.performBatchUpdates({ () -> Void in
+      if sender.velocity > 0 {
+        
+        let grow = CGSize(width: self.collectionViewFlowLayout.itemSize.width * 0.95, height: self.collectionViewFlowLayout.itemSize.height * 0.95)
+        self.collectionViewFlowLayout.itemSize = grow
+      } else if sender.velocity < 0 {
+        
+        let shrink = CGSize(width: self.collectionViewFlowLayout.itemSize.width / 0.95, height: self.collectionViewFlowLayout.itemSize.height / 0.95)
+        self.collectionViewFlowLayout.itemSize = shrink
+      }
+    }, completion: { (finished) -> Void in
+      
+    })
+  }
   func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCellWithReuseIdentifier("GalleryCell", forIndexPath: indexPath) as GalleryCell
     let image = self.images[indexPath.row]

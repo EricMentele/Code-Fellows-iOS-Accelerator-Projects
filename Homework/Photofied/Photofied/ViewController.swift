@@ -239,20 +239,6 @@ class ViewController: UIViewController, ImageSelectedProtocol, UICollectionViewD
     return self.thumbnails.count
   }
   
-//  func generateFilteredImage(image: UIImage) {
-//    
-//    let filterSelector = self.thumbnails[indexPath.row]
-//    let startImage = CIImage(image: image)
-//    let filter = CIFilter(name: self.thumbnails.[indexPath.row]
-//      filter.setDefaults()
-//      filter.setValue(startImage, forKey: kCIInputImageKey)
-//      let result = filter.valueForKey(kCIOutputImageKey) as CIImage
-//      let extent = result.extent()
-//      let imageRef = self.gpuContext.createCGImage(result, fromRect: extent)
-//      self.filteredImage = UIImage(CGImage: imageRef)
-//    
-//  }//generateFiltered
-
   
   //MARK: Did Select Item VC CollectionView
   func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {

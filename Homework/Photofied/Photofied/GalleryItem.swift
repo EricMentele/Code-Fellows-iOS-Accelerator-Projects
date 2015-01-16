@@ -15,8 +15,17 @@ class GalleryCell: UICollectionViewCell {
   override init (frame: CGRect) {
     super.init(frame: frame)
     self.addSubview(self.imageView)
-    self.backgroundColor = UIColor.grayColor()
+    self.backgroundColor = UIColor.blackColor()
     imageView.frame = self.bounds
+    imageView.setTranslatesAutoresizingMaskIntoConstraints(false)
+    imageView.layer.masksToBounds = true
+    imageView.contentMode = UIViewContentMode.ScaleToFill
+    let views = ["imageView" : imageView]
+    let imageViewConstraintH = NSLayoutConstraint.constraintsWithVisualFormat("H:|[imageView]|", options: nil, metrics: nil, views: views)
+    let imageViewConstraintV = NSLayoutConstraint.constraintsWithVisualFormat("V:|[imageView]|", options: nil, metrics: nil, views: views)
+    self.addConstraints(imageViewConstraintH)
+    self.addConstraints(imageViewConstraintV)
+    
   }//override
   
   required init(coder aDecoder: NSCoder) {
