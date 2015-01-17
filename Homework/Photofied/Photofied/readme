@@ -18,12 +18,19 @@ XSetup your Share and Done buttons for your home view controller's navigation it
 XAdd a UIimagePickerController to allow the user to take images from their device's camera. Only show this option if the camera exists on the device
 XAdd a third view controller for photos pulled from the Photos framework. Use the same protocol & delegate methods from the galleryVC
 XUse the SLCompViewController to post a photo up to twitter #ellensburg
-When entering filter mode, shrink the main image view down by adding to its constraints constant values. Make this animated (of course)
-Figure out some way to apply the selected filter from the filter thumbnail collection view to the image in the main image view
+XWhen entering filter mode, shrink the main image view down by adding to its constraints constant values. Make this animated (of course)
+XFigure out some way to apply the selected filter from the filter thumbnail collection view to the image in the main image view
 
 Thursday
 
 XGet caught up with everything from the prior assignments
-Add the pinch gesture recognizer to your gallery view controller, and change the item size when the pinching takes place
-Add a 2nd language to your app and correctly translate your user facing strings
-Using the assets catalogue, add 2x and 3x version of your gallery images to your app
+XAdd the pinch gesture recognizer to your gallery view controller, and change the item size when the pinching takes place
+XAdd a 2nd language to your app and correctly translate your user facing strings
+XUsing the assets catalogue, add 2x and 3x version of your gallery images to your app
+
+Friendship Friday
+
+Better challenge: Add a double tap to your main image view. Upon double tapping the image, your app should launch into filter mode
+Another good challenge: Ensure your app works on iPad. Your alert controller needs some extra lovin
+Extra challenge: Properly orientate the photos that are picked from the Photos Framework View Controller
+Another one: Setup another camera view controller with AVFoundation instead of UIImagePickerController

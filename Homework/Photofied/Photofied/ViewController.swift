@@ -4,7 +4,7 @@
 //
 //  Created by Eric Mentele on 1/12/15.
 //  Copyright (c) 2015 Eric Mentele. All rights reserved.
-//
+//Inspect image meta data and change the orientation of the image.
 
 import UIKit
 import Social
@@ -12,7 +12,8 @@ import Social
 class ViewController: UIViewController, ImageSelectedProtocol, UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   
  
-  let alertController = UIAlertController(title: "Photo Library", message: "Take a look!", preferredStyle: UIAlertControllerStyle.ActionSheet)
+  let alertController = UIAlertController(title: NSLocalizedString("Image Options", comment:"This is the title of the alert controller for images."), message: NSLocalizedString("Choose an image option.", comment:"This is the comment section for the image options alert controller."), preferredStyle: UIAlertControllerStyle.ActionSheet)
+ 
   let mainImageView = UIImageView()
   var collectionView: UICollectionView!
   var collectionViewVAnimateConstraint: NSLayoutConstraint!
@@ -24,6 +25,9 @@ class ViewController: UIViewController, ImageSelectedProtocol, UICollectionViewD
   var imageQueue = NSOperationQueue()
   var gpuContext : CIContext!
   var thumbnails = [Thumbnail]()
+  var originImage: UIImage?
+  var toggleHelper = 0
+  let photoButton = UIButton()
   
   var navDone : UIBarButtonItem!
   var navShare : UIBarButtonItem!
@@ -37,16 +41,16 @@ class ViewController: UIViewController, ImageSelectedProtocol, UICollectionViewD
     self.view = rootView
     
     /////////////BUTTONS///////////////
-    let photoButton = UIButton()
+    
     //Turn off auto resizing masks
-    photoButton.setTranslatesAutoresizingMaskIntoConstraints(false)
+    self.photoButton.setTranslatesAutoresizingMaskIntoConstraints(false)
     //add buton to root view
-    rootView.addSubview(photoButton)
+    mainImageView.addSubview(photoButton)
     //set up attributes and behavior
-    photoButton.setTitle("Photos", forState: .Normal)
-    photoButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-    photoButton.backgroundColor = UIColor.blackColor()
-    photoButton.addTarget(self, action: "photoButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+    self.photoButton.setTitle(NSLocalizedString("Images", comment:"This is the title of the images button for presenting image options."), forState: .Normal)
+    self.photoButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+    self.photoButton.backgroundColor = UIColor.blackColor()
+    self.photoButton.addTarget(self, action: "photoButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
     
     
     ////////////////VIEWS//////////////////
@@ -55,15 +59,19 @@ class ViewController: UIViewController, ImageSelectedProtocol, UICollectionViewD
     navSpacer.setTranslatesAutoresizingMaskIntoConstraints(false)
     rootView.addSubview(navSpacer)
     //main view image
-    var viewImage = UIImage(named: "image1.jpeg")
+    
+    let doubleTap = UITapGestureRecognizer(target: self, action: "tapped:")
+    let singleTap = UITapGestureRecognizer(target: self, action: "tap:")
+    singleTap.numberOfTapsRequired = 1
+    doubleTap.numberOfTapsRequired = 2
+    self.mainImageView.userInteractionEnabled = true
+    self.mainImageView.addGestureRecognizer(doubleTap)
+    self.mainImageView.addGestureRecognizer(singleTap)
+    
+    var viewImage = UIImage(named: "Image-1")
     rootView.addSubview(self.mainImageView)
     self.mainImageView.setTranslatesAutoresizingMaskIntoConstraints(false)
     self.mainImageView.image = viewImage!
-    //self.mainImageView.userInteractionEnabled = true
-    //let singleTap = UITapGestureRecognizer(target: self.mainImageView, action: "tapped")
-    //singleTap.numberOfTapsRequired = 1
-    //self.mainImageView.addGestureRecognizer(singleTap)
-    //collection view
     let collectionViewFlowLayout = UICollectionViewFlowLayout()
     self.collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: collectionViewFlowLayout)
     collectionViewFlowLayout.itemSize = CGSize(width: 100, height: 100)
@@ -77,19 +85,14 @@ class ViewController: UIViewController, ImageSelectedProtocol, UICollectionViewD
     let views = ["photoButton" : photoButton, "imageView" : self.mainImageView, "collectionView" : collectionView, "navSpacer" : navSpacer]
     self.rootViewConstraints(rootView, forViews: views)
     rootView.insertSubview(photoButton, aboveSubview: self.mainImageView)
-    //self.tapped(rootView, button: photoButton)
-    
   }//loadView
 
   override func viewDidLoad() {
     super.viewDidLoad()
     //MARK: Controller Actions
     
-    //main view action
-    
-    
     //gallery action
-    let gallery = UIAlertAction(title: "Gallery", style: UIAlertActionStyle.Default) { (action) -> Void in
+    let gallery = UIAlertAction(title: NSLocalizedString("Gallery", comment:"This is the title of the alert controller images gallery option."), style: UIAlertActionStyle.Default) { (action) -> Void in
       println("gallery button pressed")
       let galleryVC = PhotoGalleryViewController()
       galleryVC.delegate = self
@@ -98,11 +101,9 @@ class ViewController: UIViewController, ImageSelectedProtocol, UICollectionViewD
     self.alertController.addAction(gallery)
     
     //MARK: filter action
-    let filter = UIAlertAction(title: "Filter", style: UIAlertActionStyle.Default) { (action) -> Void in
-      println("filter button pressed")
+    let filter = UIAlertAction(title: NSLocalizedString("Filter Image", comment:"This is the title of the alert controller filter image option."), style: UIAlertActionStyle.Default) { (action) -> Void in
       //animate image view size
       self.resizer(vCArray: self.mainImageViewSizeAnimateConstraintV, hCArray: self.mainImageViewSizeAnimateConstraintH, vcs: 120, hcs: 20, vAnim: 20)
-      //self.mainImageViewPosAnimationConstraintV.constant = 10
       
       //animate collection view when filter button is pressed.
       self.collectionViewVAnimateConstraint.constant = 5
@@ -110,13 +111,13 @@ class ViewController: UIViewController, ImageSelectedProtocol, UICollectionViewD
         self.view.layoutIfNeeded()
       })
       //filter nav done button
-      let navDone = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: "donePressed")
+      let navDone = UIBarButtonItem(title: NSLocalizedString("Done", comment:"This is the title of the navigation bar done button."), style: UIBarButtonItemStyle.Done, target: self, action: "donePressed")
       self.navigationItem.rightBarButtonItem = navDone
     }//filter action
     self.alertController.addAction(filter)
     
     if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
-      let cameraOption = UIAlertAction(title: "Camera", style: .Default, handler: { (action) -> Void in
+      let cameraOption = UIAlertAction(title: NSLocalizedString("Camera", comment:"This is the title of the alert controller camera option."), style: .Default, handler: { (action) -> Void in
         
         let imagePickerController = UIImagePickerController()
         imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
@@ -127,7 +128,7 @@ class ViewController: UIViewController, ImageSelectedProtocol, UICollectionViewD
       self.alertController.addAction(cameraOption)
     }
     
-    let photo = UIAlertAction(title: "Photo", style: .Default) { (action) -> Void in
+    let photo = UIAlertAction(title: NSLocalizedString("Photo Library", comment:"This is the title of the alert controller photo library option."), style: .Default) { (action) -> Void in
       let photosVC = PhotosViewController()
       photosVC.destinationImageSize = self.mainImageView.frame.size
       photosVC.delegate = self
@@ -146,15 +147,13 @@ class ViewController: UIViewController, ImageSelectedProtocol, UICollectionViewD
     // Do any additional setup after loading the view, typically from a nib.
   }//viewDidLoad
   
-  //func tapped(view: UIView!, button: UIButton) {
-    
-    //view.bringSubviewToFront(button)
-    
-  //}
+  override func viewDidAppear(animated: Bool) {
+    self.originImage = self.mainImageView.image
+  }//Jeff Chavez
   
   func setupThumbnails() {
     
-    self.filterTypes = ["CIColorInvert","CIPhotoEffectInstant","CISepiaTone","CIPhotoEffectChrome","CIPhotoEffectNoir"]
+    self.filterTypes = ["CIColorInvert","CIPhotoEffectInstant","CISepiaTone","CIPhotoEffectChrome","CIPhotoEffectNoir","CIDotScreen","CIHatchedScreen"]
     for type in self.filterTypes {
       let thumbnail = Thumbnail(filterType: type, operationQueue: self.imageQueue, context: self.gpuContext)
       self.thumbnails.append(thumbnail)
@@ -163,7 +162,6 @@ class ViewController: UIViewController, ImageSelectedProtocol, UICollectionViewD
   
   //MARK: Image selected delegate
   func controllerDidSelectImage(image : UIImage) {
-    println("Image selected")
     self.mainImageView.image = image
     generateThumbnail(image)
     
@@ -200,7 +198,6 @@ class ViewController: UIViewController, ImageSelectedProtocol, UICollectionViewD
   }//genreateThumbnail
   
   func donePressed() {
-    println("done pressed")
     self.collectionViewVAnimateConstraint.constant = -120
     self.resizer(vCArray:self.mainImageViewSizeAnimateConstraintH,hCArray: self.mainImageViewSizeAnimateConstraintV,vcs: 0,hcs: 0, vAnim: 0)
 
@@ -215,7 +212,6 @@ class ViewController: UIViewController, ImageSelectedProtocol, UICollectionViewD
       compViewController.addImage(self.mainImageView.image)
       self.presentViewController(compViewController, animated: true, completion: nil)
     } else {
-      //must sign in to twitter to use this feature
     }
   }
   
@@ -224,9 +220,7 @@ class ViewController: UIViewController, ImageSelectedProtocol, UICollectionViewD
     let cell = collectionView.dequeueReusableCellWithReuseIdentifier("FilterCell", forIndexPath: indexPath) as GalleryCell
     let thumbnail = self.thumbnails[indexPath.row]
     if thumbnail.originImage != nil {
-      println("got origin!")
       if thumbnail.filteredImage == nil {
-        println("filtered image commence!")
         thumbnail.generateFilteredImage(thumbnail.originImage!, filterType: thumbnail.filterType)
         cell.imageView.image = thumbnail.filteredImage!
       }//if thumbnail
@@ -239,26 +233,48 @@ class ViewController: UIViewController, ImageSelectedProtocol, UICollectionViewD
     return self.thumbnails.count
   }
   
-  
   //MARK: Did Select Item VC CollectionView
   func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-    let filterCarrier = thumbnails[indexPath.row] as Thumbnail
-    filterCarrier.generateFilteredImage(mainImageView.image!, filterType: filterCarrier.filterType)
-    self.mainImageView.image = filterCarrier.filteredImage
-    //Thumbnail.generateFilteredImage(self.mainImageView.image, filterCarrier.filterType)
     
-      }
+    let filterCarrier = thumbnails[indexPath.row] as Thumbnail
+        filterCarrier.generateFilteredImage(self.originImage!, filterType: filterCarrier.filterType)
+
+    self.mainImageView.image = filterCarrier.filteredImage
+    
+  }
   
+  //MARK: Gesture funcs
+  func tapped(sender: UITapGestureRecognizer) {
+    
+    self.resizer(vCArray: self.mainImageViewSizeAnimateConstraintV, hCArray: self.mainImageViewSizeAnimateConstraintH, vcs: 120, hcs: 20, vAnim: 20)
+    
+    //animate collection view when filter button is pressed.
+    self.collectionViewVAnimateConstraint.constant = 5
+    UIView.animateWithDuration(0.4, animations: { () -> Void in
+      self.view.layoutIfNeeded()
+    })
+    let navDone = UIBarButtonItem(title: NSLocalizedString("Done", comment:"This is the title of the navigation bar done button."), style: UIBarButtonItemStyle.Done, target: self, action: "donePressed")
+    self.navigationItem.rightBarButtonItem = navDone
+    
+  }
+  
+  func tap(sender: UITapGestureRecognizer) {
+    toggleHelper++
+    if self.toggleHelper % 2 == 0 {
+      self.photoButton.hidden = true
+      println("TAP!")
+    } else {
+      self.photoButton.hidden = false
+    }
+  }//Duncan Marsh helped
   
   func resizer(#vCArray: [NSLayoutConstraint], hCArray: [NSLayoutConstraint], vcs: CGFloat, hcs: CGFloat, vAnim: CGFloat) {
     //if cs
     for cs in vCArray {
       cs.constant = vcs
       if cs.firstItem.isEqual(self.mainImageView) {
-        println(cs.constant)
         if cs.firstAttribute == NSLayoutAttribute.Top {
           cs.constant = vAnim
-          println(cs.constant)
         }
       }
     }

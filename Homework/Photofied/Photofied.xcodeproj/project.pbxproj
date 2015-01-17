@@ -15,13 +15,8 @@
 		4006137A1A64713A00D28F29 /* readme in Resources */ = {isa = PBXBuildFile; fileRef = 400613791A64713A00D28F29 /* readme */; };
 		4006137C1A64727E00D28F29 /* PhotoGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4006137B1A64727E00D28F29 /* PhotoGalleryViewController.swift */; };
 		4006137E1A6472B000D28F29 /* GalleryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4006137D1A6472B000D28F29 /* GalleryItem.swift */; };
-		400613811A64A7A400D28F29 /* image1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 400613801A64A7A400D28F29 /* image1.jpeg */; };
-		400613831A64A7AD00D28F29 /* image2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 400613821A64A7AD00D28F29 /* image2.jpeg */; };
-		400613851A64A7B300D28F29 /* image3.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 400613841A64A7B300D28F29 /* image3.JPG */; };
-		400613871A64A7C100D28F29 /* image4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 400613861A64A7C100D28F29 /* image4.jpeg */; };
-		400613891A64A7C800D28F29 /* image5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 400613881A64A7C800D28F29 /* image5.jpeg */; };
-		4006138B1A64B1A500D28F29 /* image6.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4006138A1A64B1A500D28F29 /* image6.jpeg */; };
 		400BB78F1A65FF3300988DDF /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400BB78E1A65FF3300988DDF /* Thumbnail.swift */; };
+		40BFBA991A69CE43009F96EE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 40BFBA9B1A69CE43009F96EE /* Localizable.strings */; };
 		40FBE8651A671D8B00D6F273 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FBE8641A671D8B00D6F273 /* PhotosViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -49,13 +44,10 @@
 		4006137B1A64727E00D28F29 /* PhotoGalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoGalleryViewController.swift; sourceTree = "<group>"; };
 		4006137D1A6472B000D28F29 /* GalleryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryItem.swift; sourceTree = "<group>"; };
 		4006137F1A64793900D28F29 /* Testing.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Testing.playground; sourceTree = "<group>"; };
-		400613801A64A7A400D28F29 /* image1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image1.jpeg; sourceTree = "<group>"; };
-		400613821A64A7AD00D28F29 /* image2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image2.jpeg; sourceTree = "<group>"; };
-		400613841A64A7B300D28F29 /* image3.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image3.JPG; sourceTree = "<group>"; };
-		400613861A64A7C100D28F29 /* image4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image4.jpeg; sourceTree = "<group>"; };
-		400613881A64A7C800D28F29 /* image5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image5.jpeg; sourceTree = "<group>"; };
-		4006138A1A64B1A500D28F29 /* image6.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image6.jpeg; sourceTree = "<group>"; };
 		400BB78E1A65FF3300988DDF /* Thumbnail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
+		40BFBA961A69CCDE009F96EE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		40BFBA9A1A69CE43009F96EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		40BFBA9C1A69CE46009F96EE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		40FBE8641A671D8B00D6F273 /* PhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,6 +103,8 @@
 		400613541A646F6400D28F29 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4006135D1A646F6400D28F29 /* Images.xcassets */,
+				40BFBA9B1A69CE43009F96EE /* Localizable.strings */,
 				400613551A646F6400D28F29 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -136,13 +130,6 @@
 		400613761A646F7700D28F29 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				400613801A64A7A400D28F29 /* image1.jpeg */,
-				400613821A64A7AD00D28F29 /* image2.jpeg */,
-				400613841A64A7B300D28F29 /* image3.JPG */,
-				400613861A64A7C100D28F29 /* image4.jpeg */,
-				400613881A64A7C800D28F29 /* image5.jpeg */,
-				4006138A1A64B1A500D28F29 /* image6.jpeg */,
-				4006135D1A646F6400D28F29 /* Images.xcassets */,
 				4006135F1A646F6400D28F29 /* LaunchScreen.xib */,
 			);
 			name = View;
@@ -232,6 +219,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = 400613481A646F6400D28F29;
 			productRefGroup = 400613521A646F6400D28F29 /* Products */;
@@ -250,14 +238,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4006137A1A64713A00D28F29 /* readme in Resources */,
-				400613831A64A7AD00D28F29 /* image2.jpeg in Resources */,
+				40BFBA991A69CE43009F96EE /* Localizable.strings in Resources */,
 				400613611A646F6400D28F29 /* LaunchScreen.xib in Resources */,
-				400613871A64A7C100D28F29 /* image4.jpeg in Resources */,
 				4006135E1A646F6400D28F29 /* Images.xcassets in Resources */,
-				400613811A64A7A400D28F29 /* image1.jpeg in Resources */,
-				400613851A64A7B300D28F29 /* image3.JPG in Resources */,
-				400613891A64A7C800D28F29 /* image5.jpeg in Resources */,
-				4006138B1A64B1A500D28F29 /* image6.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,8 +290,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				400613601A646F6400D28F29 /* Base */,
+				40BFBA961A69CCDE009F96EE /* es */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		40BFBA9B1A69CE43009F96EE /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				40BFBA9A1A69CE43009F96EE /* Base */,
+				40BFBA9C1A69CE46009F96EE /* es */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
