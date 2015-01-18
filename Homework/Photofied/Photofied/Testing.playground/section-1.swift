@@ -9,12 +9,17 @@ class Queue {
   
   var myQueue = [Int]()
   
-  init(){}
+  
+  init() {
+  
+  }
+  
   
   func enQueue (item: Int) {
     
     myQueue.append(item)
   }
+  
   
   func deQueue () {
     
@@ -25,13 +30,13 @@ class Queue {
   
   
 }
-
+//FIFO
 
 let queue: Queue = Queue()
-queue.enQueue(1)
+queue.enQueue(1)//First in
 queue.enQueue(7)
 queue.enQueue(9)
-queue.deQueue()
+queue.deQueue()//First out
 queue.enQueue(10)
 queue.enQueue(23)
 queue.deQueue()

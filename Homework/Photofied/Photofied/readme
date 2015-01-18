@@ -30,7 +30,7 @@ XUsing the assets catalogue, add 2x and 3x version of your gallery images to you
 
 Friendship Friday
 
-Better challenge: Add a double tap to your main image view. Upon double tapping the image, your app should launch into filter mode
+XBetter challenge: Add a double tap to your main image view. Upon double tapping the image, your app should launch into filter mode
 Another good challenge: Ensure your app works on iPad. Your alert controller needs some extra lovin
 Extra challenge: Properly orientate the photos that are picked from the Photos Framework View Controller
 Another one: Setup another camera view controller with AVFoundation instead of UIImagePickerController

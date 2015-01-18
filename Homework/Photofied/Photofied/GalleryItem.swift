@@ -11,8 +11,8 @@ import UIKit
 class GalleryCell: UICollectionViewCell {
   
   let imageView = UIImageView()
-  
   override init (frame: CGRect) {
+    
     super.init(frame: frame)
     self.addSubview(self.imageView)
     self.backgroundColor = UIColor.blackColor()
@@ -25,8 +25,8 @@ class GalleryCell: UICollectionViewCell {
     let imageViewConstraintV = NSLayoutConstraint.constraintsWithVisualFormat("V:|[imageView]|", options: nil, metrics: nil, views: views)
     self.addConstraints(imageViewConstraintH)
     self.addConstraints(imageViewConstraintV)
-    
   }//override
+  
   
   required init(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
