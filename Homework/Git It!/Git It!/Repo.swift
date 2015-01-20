@@ -17,6 +17,6 @@ struct Repo {
     
     self.name = jsonDictionary["name"] as String
     self.author = jsonDictionary["full_name"] as String
-    println(self.name)
+   println(self.name)
   }//init
 }//

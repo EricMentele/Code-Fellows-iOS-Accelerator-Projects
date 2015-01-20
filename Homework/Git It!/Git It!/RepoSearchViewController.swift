@@ -28,6 +28,7 @@ class RepoSearchViewController: UIViewController, UITableViewDataSource, UISearc
   //MARK: TABLE VIEW DATA SOURCE
   //MARK: Number of rows in section
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
     return self.repos.count
   }//tableView
   
@@ -35,27 +36,29 @@ class RepoSearchViewController: UIViewController, UITableViewDataSource, UISearc
   //MARK: Cell for row at index path
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     
-    let cell = tableView.dequeueReusableCellWithIdentifier("repoCell", forIndexPath: indexPath) as UITableViewCell
-    let cellStyle = UITableViewCell(style: .Subtitle, reuseIdentifier: "repoCell")
+    let cell = tableView.dequeueReusableCellWithIdentifier("repoCell") as UITableViewCell
     let cellRepo = self.repos[indexPath.row]
-    println(cellRepo.author)
     cell.textLabel!.text = cellRepo.name
-    self.tableView.reloadData()
+    println(self.repos.count)
+    println(cellRepo.name)
     return cell
   }//cellForRow
   
   
   func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-    self.gitCom.fetchReposForSearchTerm(searchBar.text as String, callback: { (items, errorDescription) -> () in
+    self.gitCom.fetchReposForSearchTerm(searchBar.text, callback: { (items, errorDescription) -> () in
       if errorDescription == nil {
       self.repos = items!
       //println(self.repos)
+        
       } else {
         println("NOPE")
       }
+      self.tableView.reloadData()
     })
-    self.tableView.reloadData()
+   
     searchBar.resignFirstResponder()
+    
   }
   
   

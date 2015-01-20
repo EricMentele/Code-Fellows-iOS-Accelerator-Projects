@@ -42,12 +42,13 @@ class GitCom {
                 let repo = Repo(repoItem)
                 repos.append(repo)
                 //println(repos)
-                NSOperationQueue.mainQueue().addOperationWithBlock( { () -> Void in
-                  
-                  callback(repos, nil)
-                })//NSOperationQueue
+                
               }//repoItem
             }//for
+            NSOperationQueue.mainQueue().addOperationWithBlock( { () -> Void in
+              
+              callback(repos, nil)
+            })//NSOperationQueue
           }//items
         }//jsonDictionary
           
