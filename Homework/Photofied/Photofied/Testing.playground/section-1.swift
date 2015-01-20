@@ -1,5 +1,3 @@
-// Playground - noun: a place where people can play
-
 import UIKit
 
 
@@ -34,9 +32,9 @@ class Queue {
 
 let queue: Queue = Queue()
 queue.enQueue(1)//First in
-queue.enQueue(7)
+queue.enQueue(7)//First in 2
 queue.enQueue(9)
 queue.deQueue()//First out
 queue.enQueue(10)
 queue.enQueue(23)
-queue.deQueue()
+queue.deQueue()//First out 2
