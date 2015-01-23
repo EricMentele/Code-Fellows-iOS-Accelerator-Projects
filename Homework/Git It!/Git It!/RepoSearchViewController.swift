@@ -13,7 +13,6 @@ class RepoSearchViewController: UIViewController, UITableViewDataSource, UISearc
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var searchBar: UISearchBar!
   
-  let gitCom = GitCom()
   var repos = [Repo]()
   
     override func viewDidLoad() {
@@ -39,14 +38,15 @@ class RepoSearchViewController: UIViewController, UITableViewDataSource, UISearc
     let cell = tableView.dequeueReusableCellWithIdentifier("repoCell") as UITableViewCell
     let cellRepo = self.repos[indexPath.row]
     cell.textLabel!.text = cellRepo.name
-    println(self.repos.count)
-    println(cellRepo.name)
+    //println(self.repos.count)
+    //println(cellRepo.name)
     return cell
   }//cellForRow
   
   
   func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-    self.gitCom.fetchReposForSearchTerm(searchBar.text, callback: { (items, errorDescription) -> () in
+    GitCom.sharedGitCom.fetchReposForSearchTerm(searchBar.text, callback: { (items, errorDescription) -> () in
+
       if errorDescription == nil {
       self.repos = items!
       //println(self.repos)
