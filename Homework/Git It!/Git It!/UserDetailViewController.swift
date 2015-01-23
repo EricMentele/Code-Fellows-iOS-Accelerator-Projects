@@ -16,6 +16,7 @@ class UserDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+      self.userImage.image = nil
       self.userImage.image = self.selectedUser.userImage
       assert(self.selectedUser.userImage != nil,"Image not there")
 

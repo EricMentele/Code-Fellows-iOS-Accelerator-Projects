@@ -38,8 +38,12 @@ class UserSearchViewController: UIViewController, UICollectionViewDataSource, UI
     
     let cell = collectionView.dequeueReusableCellWithReuseIdentifier("userCell", forIndexPath: indexPath) as UserCell
     
-    var user = self.users[indexPath.row]
+    //if cell.userCellImage != nil {
+      
     cell.userCellImage.image = nil
+    //}
+    
+    var user = self.users[indexPath.row]
     
     if user.userImage == nil {
       
@@ -48,10 +52,11 @@ class UserSearchViewController: UIViewController, UICollectionViewDataSource, UI
         cell.userCellImage.image = image
         user.userImage = image
         self.users[indexPath.row] = user
-        
       })
-    }//if user image
-    
+    } else {
+      cell.userCellImage.image = user.userImage
+    }
+   
     return cell
   }
   

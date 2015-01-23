@@ -20,7 +20,6 @@
 		400B44131A70B3BE001B9135 /* UserSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400B44121A70B3BE001B9135 /* UserSearchViewController.swift */; };
 		400B44151A70B53D001B9135 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400B44141A70B53D001B9135 /* User.swift */; };
 		400B44171A70B551001B9135 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400B44161A70B551001B9135 /* UserCell.swift */; };
-		400B44191A70B6DD001B9135 /* GitUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400B44181A70B6DD001B9135 /* GitUserViewController.swift */; };
 		40BF6D441A71C44A008B487B /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BF6D431A71C44A008B487B /* UserDetailViewController.swift */; };
 		40BF6D461A71D97D008B487B /* ToUserDetailAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BF6D451A71D97D008B487B /* ToUserDetailAnimationViewController.swift */; };
 /* End PBXBuildFile section */
@@ -53,7 +52,6 @@
 		400B44121A70B3BE001B9135 /* UserSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSearchViewController.swift; sourceTree = "<group>"; };
 		400B44141A70B53D001B9135 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		400B44161A70B551001B9135 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
-		400B44181A70B6DD001B9135 /* GitUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitUserViewController.swift; sourceTree = "<group>"; };
 		40BF6D431A71C44A008B487B /* UserDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
 		40BF6D451A71D97D008B487B /* ToUserDetailAnimationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToUserDetailAnimationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,7 +147,6 @@
 				40066F671A6DCA1400BF68E5 /* RepoSearchViewController.swift */,
 				400B44121A70B3BE001B9135 /* UserSearchViewController.swift */,
 				40066F3C1A6DA5AA00BF68E5 /* AppDelegate.swift */,
-				400B44181A70B6DD001B9135 /* GitUserViewController.swift */,
 				40BF6D431A71C44A008B487B /* UserDetailViewController.swift */,
 				40BF6D451A71D97D008B487B /* ToUserDetailAnimationViewController.swift */,
 			);
@@ -271,7 +268,6 @@
 				40066F681A6DCA1400BF68E5 /* RepoSearchViewController.swift in Sources */,
 				400B44131A70B3BE001B9135 /* UserSearchViewController.swift in Sources */,
 				40066F3D1A6DA5AA00BF68E5 /* AppDelegate.swift in Sources */,
-				400B44191A70B6DD001B9135 /* GitUserViewController.swift in Sources */,
 				40066F6A1A6DCCB400BF68E5 /* Repo.swift in Sources */,
 				40BF6D441A71C44A008B487B /* UserDetailViewController.swift in Sources */,
 				40BF6D461A71D97D008B487B /* ToUserDetailAnimationViewController.swift in Sources */,
