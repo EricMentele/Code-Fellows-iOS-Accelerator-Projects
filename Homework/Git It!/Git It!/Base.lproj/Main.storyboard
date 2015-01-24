@@ -144,6 +144,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="h4p-KZ-U7A" kind="show" identifier="gitWeb" id="GDf-Hm-8n6"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -182,15 +185,6 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Results: 01010101010101" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Wq-Gl-0rT">
-                                <rect key="frame" x="200" y="108" width="200" height="29"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="29" id="5Jp-qI-3vS"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6fH-Ac-DV4">
                                 <rect key="frame" x="0.0" y="145" width="600" height="455"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ken-3e-R1T">
@@ -226,6 +220,15 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Results: 01010101010101" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Wq-Gl-0rT" userLabel="Results: 01010101">
+                                <rect key="frame" x="200" y="108" width="200" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="29" id="5Jp-qI-3vS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -241,6 +244,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="results" destination="9Wq-Gl-0rT" id="yta-kb-6qp"/>
                         <outlet property="userSearch" destination="d0d-hh-hfb" id="qbV-QT-wnJ"/>
                         <outlet property="usersCollection" destination="6fH-Ac-DV4" id="BA1-cf-wFW"/>
                     </connections>
@@ -268,38 +272,47 @@
                                     <constraint firstAttribute="height" constant="160" id="le3-Ep-Kdh"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Git User Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dkA-87-dOX">
+                                <rect key="frame" x="244" y="289" width="113" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="iis-9y-duo" firstAttribute="top" secondItem="QLc-RF-hxX" secondAttribute="bottom" constant="8" symbolic="YES" id="SZj-mq-km0"/>
                             <constraint firstItem="iis-9y-duo" firstAttribute="centerX" secondItem="XDh-Vv-PYg" secondAttribute="centerX" id="U4A-je-8yn"/>
+                            <constraint firstAttribute="centerX" secondItem="dkA-87-dOX" secondAttribute="centerX" id="UWb-u7-36o"/>
+                            <constraint firstAttribute="centerY" secondItem="dkA-87-dOX" secondAttribute="centerY" id="oS2-qQ-pMk"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="userImage" destination="iis-9y-duo" id="qRZ-FM-RIE"/>
+                        <outlet property="userName" destination="dkA-87-dOX" id="3KM-jU-c1k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6hk-Hr-BrW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2697" y="-166"/>
         </scene>
-        <!--Search Code-->
-        <scene sceneID="z4L-8x-UL8">
+        <!--Git Web View Controller-->
+        <scene sceneID="ZY9-Ni-Dl7">
             <objects>
-                <viewController title="Search Code" id="ppI-QN-ZUA" sceneMemberID="viewController">
+                <viewController id="h4p-KZ-U7A" customClass="GitWebViewController" customModule="Git_It_" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="VaY-HZ-XQR"/>
-                        <viewControllerLayoutGuide type="bottom" id="Yu3-fI-b30"/>
+                        <viewControllerLayoutGuide type="top" id="iOO-sq-dU1"/>
+                        <viewControllerLayoutGuide type="bottom" id="bdh-o6-dtb"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="HTP-Fk-FNk">
+                    <view key="view" contentMode="scaleToFill" id="MkD-U4-pgE" customClass="UIWebView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="m4G-Qw-Toh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wTh-Fc-ZxW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2056" y="480"/>
+            <point key="canvasLocation" x="2697" y="-814"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aeT-ru-puD">

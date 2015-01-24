@@ -12,11 +12,12 @@ struct Repo {
   
   var name: String
   var author: String
+  var url: String
   
   init(_ jsonDictionary: [String : AnyObject]) {
     
     self.name = jsonDictionary["name"] as String
     self.author = jsonDictionary["full_name"] as String
-   println(self.name)
+    self.url = jsonDictionary["html_url"] as String
   }//init
-}//
+}//Repo

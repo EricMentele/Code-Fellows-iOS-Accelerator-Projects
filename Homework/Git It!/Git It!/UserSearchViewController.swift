@@ -10,6 +10,8 @@ import UIKit
 
 class UserSearchViewController: UIViewController, UICollectionViewDataSource, UISearchBarDelegate, UINavigationControllerDelegate {
 
+  
+  @IBOutlet weak var results: UILabel!
   @IBOutlet weak var userSearch: UISearchBar!
   @IBOutlet weak var usersCollection: UICollectionView!
   
@@ -38,12 +40,10 @@ class UserSearchViewController: UIViewController, UICollectionViewDataSource, UI
     
     let cell = collectionView.dequeueReusableCellWithReuseIdentifier("userCell", forIndexPath: indexPath) as UserCell
     
-    //if cell.userCellImage != nil {
-      
     cell.userCellImage.image = nil
-    //}
-    
     var user = self.users[indexPath.row]
+    let userCount = String(user.totalCount)
+    self.results.text = ("Results: \(userCount)")
     
     if user.userImage == nil {
       
@@ -74,20 +74,19 @@ class UserSearchViewController: UIViewController, UICollectionViewDataSource, UI
   
   
   func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    
     if toVC is UserDetailViewController {
+      
       //return the animation controller
       return ToUserDetailAnimation()
     }
-    
-    //    if fromVC is SearchUsersViewController  {
-    //      return ToUserDetailAnimationController()
-    //    }
     return nil
   }
   
   
   //Mark: SEARCH BAR
   func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    
     GitCom.sharedGitCom.fetchUsersForSearchTerm(searchBar.text, callback: { (items, errorDescription) -> () in
       
       if errorDescription == nil {
@@ -100,9 +99,16 @@ class UserSearchViewController: UIViewController, UICollectionViewDataSource, UI
     })
     
     searchBar.resignFirstResponder()
-    
   }
 
-
+  
+  func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+    
+    return text.validate()
+  }
+    
+    
+  
+  
   
 }//UserSearchViewController

@@ -160,6 +160,11 @@ class GitCom {
         case 200...299: println("We are the users!")
         
           if let jsonDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [String : AnyObject] {
+            println(jsonDictionary.count)
+            let results = jsonDictionary["total_count"] as? Int
+            //println(Int(results!))
+    
+            
             
             if let itemsArray = jsonDictionary["items"] as? [[String : AnyObject]] {
               
@@ -167,7 +172,7 @@ class GitCom {
               
               for item in itemsArray {
                 
-                let user = User(item)
+                let user = User(item, Int(results!))
                 users.append(user)
               }
               
