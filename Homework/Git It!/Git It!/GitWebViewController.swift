@@ -22,7 +22,5 @@ class GitWebViewController: UIViewController {
     let request = NSURLRequest(URL: NSURL(string: self.url!)!)
     self.webView.loadRequest(request)
     
-  }
-  
-  
+  }//view did load
 }//GitWeb

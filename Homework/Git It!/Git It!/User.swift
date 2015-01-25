@@ -14,14 +14,11 @@ struct User {
   let userName: String
   let userURL: String
   let totalCount: Int
-  //let results: Int
   
   init(_ jsonDictionary: [String : AnyObject], _ totalCount: Int) {
     
     self.userName = jsonDictionary["login"] as String
     self.userURL = jsonDictionary["avatar_url"] as String
     self.totalCount = totalCount
-    println(totalCount)
-  }
-  
-}
+  }//init
+}//User

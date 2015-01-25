@@ -20,6 +20,7 @@
 		400B44131A70B3BE001B9135 /* UserSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400B44121A70B3BE001B9135 /* UserSearchViewController.swift */; };
 		400B44151A70B53D001B9135 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400B44141A70B53D001B9135 /* User.swift */; };
 		400B44171A70B551001B9135 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400B44161A70B551001B9135 /* UserCell.swift */; };
+		40A1A4F71A74B4BD00F48CDC /* GitAlert.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40A1A4F61A74B4BD00F48CDC /* GitAlert.xib */; };
 		40BF6D441A71C44A008B487B /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BF6D431A71C44A008B487B /* UserDetailViewController.swift */; };
 		40BF6D461A71D97D008B487B /* ToUserDetailAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BF6D451A71D97D008B487B /* ToUserDetailAnimationViewController.swift */; };
 		40BF6D481A72F3DA008B487B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BF6D471A72F3DA008B487B /* Extensions.swift */; };
@@ -54,6 +55,7 @@
 		400B44121A70B3BE001B9135 /* UserSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSearchViewController.swift; sourceTree = "<group>"; };
 		400B44141A70B53D001B9135 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		400B44161A70B551001B9135 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		40A1A4F61A74B4BD00F48CDC /* GitAlert.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GitAlert.xib; sourceTree = "<group>"; };
 		40BF6D431A71C44A008B487B /* UserDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
 		40BF6D451A71D97D008B487B /* ToUserDetailAnimationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToUserDetailAnimationViewController.swift; sourceTree = "<group>"; };
 		40BF6D471A72F3DA008B487B /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				40066F401A6DA5AA00BF68E5 /* Main.storyboard */,
 				40066F431A6DA5AB00BF68E5 /* Images.xcassets */,
 				40066F451A6DA5AB00BF68E5 /* LaunchScreen.xib */,
+				40A1A4F61A74B4BD00F48CDC /* GitAlert.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 			files = (
 				40066F5F1A6DA70900BF68E5 /* readme in Resources */,
 				40066F421A6DA5AA00BF68E5 /* Main.storyboard in Resources */,
+				40A1A4F71A74B4BD00F48CDC /* GitAlert.xib in Resources */,
 				40066F471A6DA5AB00BF68E5 /* LaunchScreen.xib in Resources */,
 				40066F441A6DA5AB00BF68E5 /* Images.xcassets in Resources */,
 			);

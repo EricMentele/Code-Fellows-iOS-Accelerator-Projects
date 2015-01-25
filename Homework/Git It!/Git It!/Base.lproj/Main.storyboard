@@ -186,7 +186,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6fH-Ac-DV4">
-                                <rect key="frame" x="0.0" y="145" width="600" height="455"/>
+                                <rect key="frame" x="0.0" y="137" width="600" height="463"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ken-3e-R1T">
                                     <size key="itemSize" width="100" height="90"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -204,6 +204,16 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QXo-b4-iko">
                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="90"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Nh-zc-oWu">
+                                                    <rect key="frame" x="8" y="77" width="84" height="13"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="13" id="HFm-DS-uho"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -211,19 +221,23 @@
                                             <constraint firstItem="QXo-b4-iko" firstAttribute="top" secondItem="cZq-0t-BqN" secondAttribute="topMargin" constant="-8" id="JYp-L1-vsy"/>
                                             <constraint firstItem="QXo-b4-iko" firstAttribute="leading" secondItem="cZq-0t-BqN" secondAttribute="leadingMargin" constant="-8" id="XXh-oY-L9S"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="QXo-b4-iko" secondAttribute="bottom" constant="-8" id="YTt-VR-g3Z"/>
+                                            <constraint firstItem="8Nh-zc-oWu" firstAttribute="leading" secondItem="cZq-0t-BqN" secondAttribute="leadingMargin" id="dLo-Df-On6"/>
+                                            <constraint firstItem="8Nh-zc-oWu" firstAttribute="trailing" secondItem="cZq-0t-BqN" secondAttribute="trailingMargin" id="nzL-Yz-Ikk"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="8Nh-zc-oWu" secondAttribute="bottom" constant="-8" id="oOe-x8-ciC"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="QXo-b4-iko" secondAttribute="trailing" constant="-8" id="z1s-Jh-NLC"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="userCellImage" destination="QXo-b4-iko" id="jMs-fS-Q2g"/>
+                                            <outlet property="userName" destination="8Nh-zc-oWu" id="kGO-px-jYR"/>
                                             <segue destination="kud-FO-Ifw" kind="show" identifier="userDetail" id="ic7-88-ioB"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Results: 01010101010101" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Wq-Gl-0rT" userLabel="Results: 01010101">
-                                <rect key="frame" x="200" y="108" width="200" height="29"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Results: Number Of Users Found" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Wq-Gl-0rT" userLabel="Results: 01010101">
+                                <rect key="frame" x="173" y="108" width="254" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="29" id="5Jp-qI-3vS"/>
+                                    <constraint firstAttribute="height" constant="21" id="5Jp-qI-3vS"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -308,11 +322,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.74999999999999978"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wTh-Fc-ZxW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2697" y="-814"/>
+            <point key="canvasLocation" x="2743" y="-814"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aeT-ru-puD">

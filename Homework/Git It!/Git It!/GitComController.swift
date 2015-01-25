@@ -12,7 +12,9 @@ class GitCom {
   
   
   class var sharedGitCom : GitCom {
+    
     struct Static {
+      
       static let instance: GitCom = GitCom()
     }//struct
     return Static.instance
@@ -35,7 +37,7 @@ class GitCom {
       
       self.accessToken = accessToken
       //println(accessToken)
-    }
+    }//access Token
   }//init
   
   
@@ -75,7 +77,7 @@ class GitCom {
           switch gitResponse.statusCode {
             
           case 200...299:
-            println("Token 200s response")
+            
             let tokenResponse = NSString(data: data, encoding: NSASCIIStringEncoding)
             //println(tokenResponse)
             let accessTokenComponent = tokenResponse?.componentsSeparatedByString("&").first as String
@@ -85,6 +87,7 @@ class GitCom {
             NSUserDefaults.standardUserDefaults().synchronize()
             
           case 300...599:
+            
             println("300 to 599 response")
           default: "what, what?"
           }//switch
@@ -110,26 +113,24 @@ class GitCom {
           
         case 200...299:
           println("Go for launch!!!")
-        
-        if let jsonDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [String : AnyObject] {
           
-          //println(jsonDictionary)
-          if let itemsArray = jsonDictionary["items"] as? [[String : AnyObject]] {
+          if let jsonDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [String : AnyObject] {
             
-            var repos = [Repo]()
-            
-            for item in itemsArray {
+            //println(jsonDictionary)
+            if let itemsArray = jsonDictionary["items"] as? [[String : AnyObject]] {
               
-              let repo = Repo(item)
-              repos.append(repo)
-            }//for item
-            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+              var repos = [Repo]()
               
-              callback(repos,nil)
-            })//main queue
-          }//items array
-          
-          //println(jsonDictionary)
+              for item in itemsArray {
+                
+                let repo = Repo(item)
+                repos.append(repo)
+              }//for item
+              NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                
+                callback(repos,nil)
+              })//main queue
+            }//items array
           }//jsonDictionary
         case 300...599:
           
@@ -159,32 +160,29 @@ class GitCom {
           
         case 200...299: println("We are the users!")
         
-          if let jsonDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [String : AnyObject] {
-            println(jsonDictionary.count)
-            let results = jsonDictionary["total_count"] as? Int
-            //println(Int(results!))
-    
+        if let jsonDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [String : AnyObject] {
+          
+          let results = jsonDictionary["total_count"] as? Int
+          
+          if let itemsArray = jsonDictionary["items"] as? [[String : AnyObject]] {
             
+            var users = [User]()
             
-            if let itemsArray = jsonDictionary["items"] as? [[String : AnyObject]] {
+            for item in itemsArray {
               
-              var users = [User]()
+              let user = User(item, Int(results!))
+              users.append(user)
+            }//for itemsArray
+            
+            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
               
-              for item in itemsArray {
-                
-                let user = User(item, Int(results!))
-                users.append(user)
-              }
-              
-              NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                
-                callback(users, nil)
-              })
-            }
-          }
+              callback(users, nil)
+            })//Op queue
+          }//items array
+          }//jsonDictionary
           
         default: println("LAME SAUCE!")
-        }
+        }//switch
       }//if error
     })//data task
     dataTask.resume()
@@ -198,10 +196,10 @@ class GitCom {
       
       let imageData = NSData(contentsOfURL: url!)
       let image = UIImage(data: imageData!)
-    
-    NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-      completionHandler(image!)
-    })
+      
+      NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+        completionHandler(image!)
+      })//op queue
     }//imageQueue
   }//fetchUserImage
 } //GitCom

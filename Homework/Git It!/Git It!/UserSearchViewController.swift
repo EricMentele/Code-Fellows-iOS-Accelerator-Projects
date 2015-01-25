@@ -9,7 +9,6 @@
 import UIKit
 
 class UserSearchViewController: UIViewController, UICollectionViewDataSource, UISearchBarDelegate, UINavigationControllerDelegate {
-
   
   @IBOutlet weak var results: UILabel!
   @IBOutlet weak var userSearch: UISearchBar!
@@ -17,25 +16,23 @@ class UserSearchViewController: UIViewController, UICollectionViewDataSource, UI
   
   var users = [User]()
   
-    override func viewDidLoad() {
-      
-        super.viewDidLoad()
-      self.usersCollection.dataSource = self
-      self.userSearch.delegate = self
-      self.navigationController?.delegate = self
-        // Do any additional setup after loading the view.
-    }//viewDidLoad
+  override func viewDidLoad() {
+    
+    super.viewDidLoad()
+    self.usersCollection.dataSource = self
+    self.userSearch.delegate = self
+    self.navigationController?.delegate = self
+    // Do any additional setup after loading the view.
+  }//viewDidLoad
   
   
   //MARK: COLLECTION VIEW DATA SOURCE
-  //MARK: number of rows
   func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     
     return self.users.count
-  }
+  }//collection view
   
   
-  //MARK: Collection view cell
   func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
     
     let cell = collectionView.dequeueReusableCellWithReuseIdentifier("userCell", forIndexPath: indexPath) as UserCell
@@ -44,6 +41,7 @@ class UserSearchViewController: UIViewController, UICollectionViewDataSource, UI
     var user = self.users[indexPath.row]
     let userCount = String(user.totalCount)
     self.results.text = ("Results: \(userCount)")
+    cell.userName.text = user.userName
     
     if user.userImage == nil {
       
@@ -52,13 +50,14 @@ class UserSearchViewController: UIViewController, UICollectionViewDataSource, UI
         cell.userCellImage.image = image
         user.userImage = image
         self.users[indexPath.row] = user
-      })
+      })//fetch user image
     } else {
+      
       cell.userCellImage.image = user.userImage
-    }
-   
+    }//if else
+    
     return cell
-  }
+  }//cell for item
   
   
   //MARK: SEGUE AND NAV
@@ -69,22 +68,21 @@ class UserSearchViewController: UIViewController, UICollectionViewDataSource, UI
       let destination = segue.destinationViewController as UserDetailViewController
       let selectedCell = self.usersCollection.indexPathsForSelectedItems().first as NSIndexPath
       destination.selectedUser = self.users[selectedCell.row]
-    }
-  }
+    }//if
+  }//prepare for segue
   
   
   func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     
     if toVC is UserDetailViewController {
       
-      //return the animation controller
       return ToUserDetailAnimation()
-    }
+    }//if
     return nil
-  }
+  }//nav animation control
   
   
-  //Mark: SEARCH BAR
+  //MARK: SEARCH BAR
   func searchBarSearchButtonClicked(searchBar: UISearchBar) {
     
     GitCom.sharedGitCom.fetchUsersForSearchTerm(searchBar.text, callback: { (items, errorDescription) -> () in
@@ -93,22 +91,17 @@ class UserSearchViewController: UIViewController, UICollectionViewDataSource, UI
         
         self.users = items!
         assert(self.users.count > 0, "Users are not populating")
-        
       }
       self.usersCollection.reloadData()
-    })
+    })//fetch users for search
     
     searchBar.resignFirstResponder()
-  }
-
+  }//search bar clicked
   
+  
+  //MARK: Search text restriction
   func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
     
     return text.validate()
-  }
-    
-    
-  
-  
-  
+  }//search bare text validate
 }//UserSearchViewController

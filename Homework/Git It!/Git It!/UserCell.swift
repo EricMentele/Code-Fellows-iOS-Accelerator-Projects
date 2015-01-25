@@ -9,8 +9,7 @@
 import UIKit
 
 class UserCell: UICollectionViewCell {
+  
+  @IBOutlet weak var userName: UILabel!
   @IBOutlet weak var userCellImage: UIImageView!
-  
-  
-  
-}
+}//user cell

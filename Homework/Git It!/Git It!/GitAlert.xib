@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GitMenuTableViewController" customModule="Git_It_" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="wR9-st-swp">
+            <rect key="frame" x="0.0" y="0.0" width="250" height="150"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dnv-XC-Y9F">
+                    <rect key="frame" x="102" y="55" width="46" height="87"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="46" id="8Ol-s9-EkG"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                    <state key="normal" title="OK">
+                        <color key="titleColor" red="0.35294117650000001" green="0.73333333329999995" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="gitAlertOk:" destination="-1" eventType="touchUpInside" id="aX8-bR-vaQ"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Going to GitHub for login." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WnB-Q5-F9b">
+                    <rect key="frame" x="37" y="29" width="177" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="WnB-Q5-F9b" firstAttribute="top" secondItem="wR9-st-swp" secondAttribute="top" constant="29" id="BeZ-Zp-uuE"/>
+                <constraint firstItem="Dnv-XC-Y9F" firstAttribute="bottom" secondItem="wR9-st-swp" secondAttribute="bottomMargin" id="LoE-Ul-kqf"/>
+                <constraint firstItem="Dnv-XC-Y9F" firstAttribute="centerX" secondItem="wR9-st-swp" secondAttribute="centerX" id="bHN-oj-Ug4"/>
+                <constraint firstItem="Dnv-XC-Y9F" firstAttribute="centerX" secondItem="WnB-Q5-F9b" secondAttribute="centerX" id="w2N-CL-HE5"/>
+                <constraint firstItem="Dnv-XC-Y9F" firstAttribute="top" secondItem="WnB-Q5-F9b" secondAttribute="bottom" constant="8" symbolic="YES" id="zci-aD-eO8"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-152" y="-202"/>
+        </view>
+    </objects>
+</document>

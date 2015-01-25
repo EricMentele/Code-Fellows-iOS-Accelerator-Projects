@@ -9,30 +9,28 @@
 import UIKit
 
 class RepoSearchViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate {
-
+  
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var searchBar: UISearchBar!
   
   var repos = [Repo]()
   
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        self.tableView.dataSource = self
-        self.searchBar.delegate = self
-      
-    }
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    // Do any additional setup after loading the view.
+    self.tableView.dataSource = self
+    self.searchBar.delegate = self
+    
+  }//view did load
   
   
   //MARK: TABLE VIEW DATA SOURCE
-  //MARK: Number of rows in section
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
     return self.repos.count
   }//tableView
   
   
-  //MARK: Cell for row at index path
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     
     let cell = tableView.dequeueReusableCellWithIdentifier("repoCell") as UITableViewCell
@@ -51,9 +49,9 @@ class RepoSearchViewController: UIViewController, UITableViewDataSource, UISearc
       let selectedCell = self.tableView.indexPathForSelectedRow()
       let repo = self.repos[selectedCell!.row]
       destinationVC.url = repo.url
-    }
-  }
-
+    }//segue identifier
+  }//prepare for seque
+  
   
   
   //MARK: SEARCH BAR
@@ -61,15 +59,15 @@ class RepoSearchViewController: UIViewController, UITableViewDataSource, UISearc
     
     GitCom.sharedGitCom.fetchReposForSearchTerm(searchBar.text, callback: {
       (items, errorDescription) -> () in
-
+      
       if errorDescription == nil {
         
-      self.repos = items!
-      assert(!self.repos.isEmpty)
+        self.repos = items!
+        assert(!self.repos.isEmpty)
       }
       self.tableView.reloadData()
     })//fetch repos
-   
+    
     searchBar.resignFirstResponder()
     
   }//search bar clicked
@@ -80,6 +78,4 @@ class RepoSearchViewController: UIViewController, UITableViewDataSource, UISearc
     
     return text.validate()
   }//sear bar text restriction
-  
-  
 }//RepoSearchVC
